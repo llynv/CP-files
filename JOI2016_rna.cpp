@@ -27,20 +27,111 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 #define dbg(...)
 #endif
 
-void solve();
+struct node
+{
+    node *child[26];
+    int isStart;
+};
+
+node *root, *revRoot;
+
+node *CreateNode()
+{
+    node *p = new node();
+    for (int i = 0; i < 26; ++i) {
+        p->child[i] =  NULL;
+    }
+    p->isStart = 0;
+    return p;
+}
+
+void AddNode(const string &s)
+{
+    node *p = root;
+    for (int i = 0; i < (int) s.size(); ++i) {
+        int id = s[i] - 'A';
+        if (p->child[id] == NULL) {
+            p->child[id] = CreateNode();
+        }
+        p = p->child[id];
+        p->isStart++;
+    }
+    // for (int i = (int) s.size() - 1; i >= 0; --i) {
+    //     int id = s[i] - 'A';
+    //     if (p->parent[id] == NULL) {
+    //         p->parent[id] = CreateNode();
+    //     }
+    //     p = p->parent[id];
+    //     p->isStart++;
+    // }
+}
+
+void update(int &cnt, int vals)
+{
+    cnt = min(cnt, vals);
+}
+
+int FindFinalChild(int n, node *p, vector<int> &ret)
+{
+    bool isFound = false;
+    for (int i = 0; i < 26; ++i) {
+        if (p->child[i] != NULL) {
+            FindFinalChild(i, p->child[i], ret);
+        }
+    }
+    ret.emplace_back(n);
+}
+
+int CalculateNode(const string &st, const string &en)
+{
+    node *p = root;
+    if (p->child[st.front() - 'A'] == NULL) return 0;
+
+    int cnt = LONG_LONG_MAX;
+    // cnt = min(p->child[st[0] - 'A']->isStart, p->child[en[0] - 'A']->isStart);
+
+    for (auto c : st) {
+        if (p->child[c - 'A'] == NULL) return 0;
+        p = p->child[c - 'A'];
+        update(cnt, p->isStart);
+        // cout << p->isStart << " ";
+    }
+
+    vector<int> ret;
+    FindFinalChild(-1, p, ret);
+
+    // ret.erase(-1);
+    // for (auto c : ret) {
+    //     cout << (char)(c + 'A');
+    // }
+    cout << "\n";
+    dbg(ret);
+    
+
+    return cnt;
+}
+
+void reverse(string &s)
+{
+    for (int i = 0; i < s.size() / 2; ++i) swap(s[i], s[s.size()-i-1]);
+}
+
 
 int32_t main() {
     ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
-    // int t;
-    // cin >> t;
-    // while (t--)
-        solve();
+    int n, m;
+    cin >> n >> m;
+    root = CreateNode();
+    for (int i = 0; i < n; ++i) {
+        string s;
+        cin >> s;
+        AddNode(s);
+    }
+    for (int i = 0; i < m; ++i) {
+        string fi, se;
+        cin >> fi >> se;
+        reverse(se);
+        cout << CalculateNode(fi, se) << "\n";
+    }
     return 0;
-}
-
-const int INF = 0x3f3f3f3f;
-
-void solve()
-{
-    
 }
