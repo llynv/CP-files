@@ -93,6 +93,7 @@ void solve()
             // extendedEuclid(tt[i], MOD, x, y);
             // x = (x % MOD + MOD) % MOD;
             // x = x * tt[i+m] % MOD;
+            // tt[i+m] / tt[i];
             int x = tt[i+m];
             x = ((x % MOD) * fpow(tt[i], MOD-2)) % MOD;
             res = (res + x) % MOD;

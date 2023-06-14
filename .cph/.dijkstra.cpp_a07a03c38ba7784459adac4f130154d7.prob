@@ -1,0 +1,1 @@
+{"name":"Local: dijkstra","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\dijkstra.cpp","tests":[{"id":1686399163490,"input":"4 4 3\n1 2 6\n2 4 10\n1 3 16\n3 4 4\n3 14\n4 14\n4 11\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\dijkstra.cpp","group":"local","local":true}

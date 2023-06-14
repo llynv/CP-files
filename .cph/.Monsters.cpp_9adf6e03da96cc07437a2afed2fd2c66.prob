@@ -1,0 +1,1 @@
+{"name":"Local: Monsters","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\Monsters.cpp","tests":[{"id":1685855664989,"input":"5 8\n########\n#M..A..#\n#.#.M#.#\n#M#..#..\n#.######","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\Monsters.cpp","group":"local","local":true}

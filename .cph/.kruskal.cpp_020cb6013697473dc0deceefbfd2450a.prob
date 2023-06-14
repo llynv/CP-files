@@ -1,0 +1,1 @@
+{"name":"Local: kruskal","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\kruskal.cpp","tests":[{"id":1685711735568,"input":"6 8\n1 2 3\n1 3 4\n2 3 3\n3 5 6\n2 4 2\n2 6 5\n5 6 10\n4 5 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\kruskal.cpp","group":"local","local":true}

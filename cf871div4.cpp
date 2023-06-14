@@ -90,7 +90,6 @@ int32_t main()
 
 const int INF = 0x3f3f3f3f;
 
-
 void solve()
 {
     int n;
