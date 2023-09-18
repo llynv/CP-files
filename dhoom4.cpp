@@ -37,6 +37,7 @@ int32_t main() {
 const int INF = 0x3f3f3f3f;
 
 vector<int> adj[100111];
+int par [100111], vst[100111];
 
 int bfs(int u, int v)
 {
@@ -49,6 +50,7 @@ int bfs(int u, int v)
         int cur = Q.front();
         Q.pop();
         for (auto c : adj[cur]) {
+
             if (dist[c] == -1) {
                 dist[c] = dist[cur] + 1;
                 Q.push(c);
@@ -56,6 +58,32 @@ int bfs(int u, int v)
         }
     }
     return dist[v];
+}
+
+void dfs(int u, int c, int edge)
+{
+    vst[u] = 1;
+    cout << u << " ";
+    if (u == edge) {
+
+        int x = par[c];
+        cout << x << " ";
+        while (par[x] != -1) {
+            cout << par[x] << " ";
+            x = par[x];
+        }
+        cout << "\n";
+    }
+
+    par[u] = c;
+
+
+    for (auto v : adj[u]) {
+        if (!vst[v])
+            dfs(v, u, edge);
+    }
+
+    vst[u] = -1;
 }
 
 void solve()
@@ -69,24 +97,23 @@ void solve()
     vector<int> st;
     st.emplace_back(u);
     bool isOut = false;
-    while (true) {
+    int j = 0;
+    while (j < n) {
         int sz = st.size();
         for (int i = 0; i < sz; ++i) {
             for (auto ii : a) {
-                adj[st[0]].emplace_back((ii*st[0])%100000);
-                st.emplace_back((ii*st[0])%100000);
-                if ((ii*st[0])%100000 >= v) {
-                    isOut = true;
-                }
+                adj[sqr(st[0])].emplace_back((sqr(ii)+sqr(st[0])));
+                st.emplace_back((sqr(ii)+sqr(st[0])));
             }
             st.erase(st.begin());
         }
-        if (isOut) break;
+        ++j;
     }
     // for (auto c : st) cout << c << " ";
     int res = INF;
     for (auto c : a) {
-        res = min(res, bfs(u, v));
+        // res = min(res, );
+        dfs(sqr(c), -1, v);
     }
-    cout << res;
+    // cout << res;
 }

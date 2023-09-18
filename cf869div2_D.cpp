@@ -40,13 +40,13 @@ bool isCircle = false;
 int vst[2011], par[2011];
 vector<int> adj[2011];
 
-void dfs_cycle(int u, int p, int color[], int par[], vector<vector<int>> &cycles)
+void dfs_cycle(int u, int p, int end, int color[], int par[], vector<vector<int>> &cycles)
 {
     if (color[u] == 2) {
         return;
     }
  
-    if (color[u] == 1) {
+    if (u == end) {
         vector<int> v;
            
         int cur = p;
@@ -68,7 +68,7 @@ void dfs_cycle(int u, int p, int color[], int par[], vector<vector<int>> &cycles
         if (v == par[u]) {
             continue;
         }
-        dfs_cycle(v, u, color, par, cycles);
+        dfs_cycle(v, u, end, color, par, cycles);
     }
  
     color[u] = 2;
@@ -96,56 +96,64 @@ void solve()
     }
 
     // for (auto c : vertexs)
+    for (int i = 1; i <= n; ++i) {
+        memset(vst, 0, sizeof(vst));
+        memset(par, 0, sizeof(par));
+        vector<vector<int>> s;
 
-    for (int vertex = 1; vertex <= n; ++vertex) {
-
-        if (adj[vertex].size() >= 4) {
-
-            vector<vector<int>> s;
-
-            memset(vst, 0, sizeof(vst));
-            memset(par, 0, sizeof(par));
-
-            dfs_cycle(vertex, -1, vst, par, s);
-
-            if (s.size() > 0) {
-                
-                vector<int> res;
-                set<int> verx;
-
-                for (auto c : s) {
-
-                    set<int> tmp;
-                    for (auto v : adj[vertex]) tmp.insert(v);
-
-                    for (auto v : c) {
-                        if (tmp.find(v) != tmp.end())
-                            tmp.erase(v);
-                    }
-
-                    if (tmp.size() >= 2 && find(c.begin(), c.end(), vertex) != c.end()) {
-                        res = c;
-                        verx = tmp;
-                        break;
-                    }
-                }
-
-                if (!res.empty()) {
-                    
-                    res.emplace_back(res[0]);
-
-                    cout << "YES\n" << res.size() + 1 << "\n";
-                    cout << *verx.begin() << " " << vertex << "\n" << *prev(verx.end()) << " " << vertex << "\n";
-
-                    for (int i = 0; i < res.size()-1; ++i) {
-                        cout << res[i] << " " << res[i+1] << "\n";
-                    }
-
-                    return;
-                }
-            }
-        }
+        dfs_cycle(1, -1, n, vst, par, s);
+        dbg(s);
     }
+
+    // for (int vertex = 1; vertex <= n; ++vertex) {
+
+    //     if (adj[vertex].size() >= 4) {
+
+    //         vector<vector<int>> s;
+
+    //         memset(vst, 0, sizeof(vst));
+    //         memset(par, 0, sizeof(par));
+
+    //         dfs_cycle(vertex, -1, vst, par, s);
+
+    //         if (s.size() > 0) {
+                
+    //             vector<int> res;
+    //             set<int> verx;
+
+    //             for (auto c : s) {
+
+    //                 set<int> tmp;
+    //                 for (auto v : adj[vertex]) tmp.insert(v);
+
+    //                 for (auto v : c) {
+    //                     if (tmp.find(v) != tmp.end())
+    //                         tmp.erase(v);
+    //                 }
+
+    //                 if (tmp.size() >= 2 && find(c.begin(), c.end(), vertex) != c.end()) {
+    //                     res = c;
+    //                     verx = tmp;
+    //                     break;
+    //                 }
+    //             }
+
+    //             if (!res.empty()) {
+                    
+    //                 res.emplace_back(res[0]);
+
+    //                 cout << "YES\n" << res.size() + 1 << "\n";
+    //                 cout << *verx.begin() << " " << vertex << "\n" << *prev(verx.end()) << " " << vertex << "\n";
+
+    //                 for (int i = 0; i < res.size()-1; ++i) {
+    //                     cout << res[i] << " " << res[i+1] << "\n";
+    //                 }
+
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // }
 
     cout << "NO\n";
 }

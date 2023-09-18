@@ -1,0 +1,1 @@
+{"name":"Local: smpdfs","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\smpdfs.cpp","tests":[{"id":1687279493433,"input":"4 5\n1 2\n2 4\n3 1\n4 1\n4 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\smpdfs.cpp","group":"local","local":true}

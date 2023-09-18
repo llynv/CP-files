@@ -1,0 +1,1 @@
+{"name":"Local: fc072_seq13","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\fc072_seq13.cpp","tests":[{"id":1688551562607,"input":"5 3\n-1 2 4 7 -3\n2 4\n1 3\n5 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\fc072_seq13.cpp","group":"local","local":true}

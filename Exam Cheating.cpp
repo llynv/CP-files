@@ -37,7 +37,7 @@ int32_t main() {
 const int INF = 0x3f3f3f3f;
 const int N = 1011;
 
-int f[57][N];
+int f[2][57][N];
 int prep[2][N], checkStudent[2][N];
 
 void solve()
@@ -72,22 +72,25 @@ void solve()
 
     f[0][0][0] = f[1][0][0] = 0;
 
-    for (int j = 1; j <= p; ++j) {
-        for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 1; j <= p; ++j) {
             for (int l = 1; l <= n; ++l) {
-                f[j][l] = max(f[i][j][l-1], (int)(f[j-1][max(0LL, l-k)] + Count(l, st)));
+                if (checkStudent[i][l]) {
+                    f[i][j][l] = max(f[i][j][l-1], (int)(f[i][j-1][max(0LL, l-k)] + prep[i][l] - prep[i][max(0LL, l-k)]));
+                } else {
+                    f[i][j][l] = max(f[i][j][l], f[i][j][l-1]);
+                }
                 // cout << f[i][j][l] << " ";
             }
             // cout << "\n";
         }
-        cout << f[j][n] << " ";
-        cout << "\n";
+        // cout << "\n";
     }
 
     int res = 0;
     for (int i = 0; i <= p; ++i) {
         int l = i, r = p - i;
-        res = max(res, f[l][n] + f[r][n]);
+        res = max(res, f[0][l][n] + f[1][r][n]);
     }
     cout << res;
 }

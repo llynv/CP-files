@@ -1,0 +1,1 @@
+{"name":"Local: test5","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\test5.cpp","tests":[{"id":1685601327666,"input":"6\n2\n10\n3\n2\n5\n1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\test5.cpp","group":"local","local":true}

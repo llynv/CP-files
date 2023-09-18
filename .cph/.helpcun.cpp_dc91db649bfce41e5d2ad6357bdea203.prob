@@ -1,0 +1,1 @@
+{"name":"Local: helpcun","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\helpcun.cpp","tests":[{"id":1694595383541,"input":"ABCDABC\nABC","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\helpcun.cpp","group":"local","local":true}
