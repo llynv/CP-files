@@ -44,13 +44,26 @@ const int N = 6e4 + 11;
 
 int a[N], fw[N], it[N];
 
-void update(int start, int n, int value)
+void update(int start, int value)
 {
-    int i = start + 1;
-    while (i <= n) {
+    int i = start;
+    while (i < N) {
         fw[i] += value;
         i += _(i);
     }
+}
+
+int get_min(int start, int end)
+{
+    int lmin = LONG_LONG_MAX;
+    int i = end;
+    while (i > 0) {
+        cout << a[i-1] << " : " << fw[i] << "\n";
+        if (fw[i] != 0) lmin = min(lmin, fw[i]);
+        i -= _(i);
+    }
+    cout << endl;
+    return lmin;
 }
 
 int get(int n)
@@ -71,14 +84,12 @@ void solve()
     for (int i = 0; i < n; ++i) cin >> a[i];
     int res = 0;
     int cnt = 0, target = LONG_LONG_MAX, pos = 0;
-    for (int i = 0; i < n; ++i) {
-        update(i, n, a[i]);
+    for (int i = 1; i <= n; ++i) {
+        update(i, a[i-1]);    
         // cout << it[i] << " ";
     }
-    for (int i = 0; i < n; ++i) {
-        cout << get(i) << " ";
-    }
-    update(0, n, 10);
+    cout << get(n) << endl;
+    update(2, 10);
     cout << get(n);
     // for (int i = 0; i < n; ++i) cout << it[i] << ' ';
 }

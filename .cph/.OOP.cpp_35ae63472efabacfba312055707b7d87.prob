@@ -1,0 +1,1 @@
+{"name":"Local: OOP","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\OOP.cpp","tests":[{"id":1692874049999,"input":"9\n1 aba\n1 accba\n2 2 2\n2 2 3\n1 aaaa\n1 ababa\n2 3 2\n3 1\n2 3 2","output":"2\n3\n4\n27\n2648956421"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\OOP.cpp","group":"local","local":true}

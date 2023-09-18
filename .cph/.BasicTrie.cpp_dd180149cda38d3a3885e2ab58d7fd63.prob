@@ -1,0 +1,1 @@
+{"name":"Local: BasicTrie","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\BasicTrie.cpp","tests":[{"id":1691822204659,"input":"6\nanascn\nashujcb\nfuakshd\nasjkdnjk\nczxbjkb\nauiwheeq\n4\n4 b\n2 a\n5 j\n4 i","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\BasicTrie.cpp","group":"local","local":true}

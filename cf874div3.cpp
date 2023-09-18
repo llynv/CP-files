@@ -4,9 +4,13 @@ using namespace std;
 #define LOCAL
 #define int long long
 #define ii pair<int, int>
-#define x first
-#define y second
+#define fi first
+#define se second
 #define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) ((int)(x).size())
+#define rep(i, a, b) for (int i = (a); i < (b); ++i)
+#define per(i, a, b) for (int i = (b)-1; i >= (a); --i)
 
 string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
 string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
@@ -29,76 +33,114 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 
 void solve();
 
-const int INF = 0x3f3f3f3f;
-const int MOD = 1e9 + 7;
-
-int tt [200007], pre[100007], suf[100007];
-
 int32_t main() {
     ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
     int t;
     cin >> t;
-    while (t--)
+    while (t--) 
         solve();
     return 0;
 }
 
-// void extendedEuclid(int A, int B, int &x, int &y) {
-//     if (B == 0) {
-//         x = 1;
-//         y = 0;
-//     }
-//     else {
-//         extendedEuclid(B, A%B, x, y);
-//         int temp = x;
-//         x = y;
-//         y = temp - (A/B)*y;
-//     }
-// }
+const int INF = 0x3f3f3f3f;
+const int N = 2e5 + 7;
 
-int fpow (int a, int b)
-{
-    if (b == 0) return 1;
-    if (b == 1) return a;
-    int pp = fpow(a, b/2);
-    if (b % 2 == 0) return ((pp % MOD) * pp) % MOD;
-    else return (((pp % MOD) * pp % MOD) * a) % MOD;
+vector<int> adj[N];
+int f[N][20], d[N], a[N];
+vector<int> ver[N];
+int store[N];
+
+void dfs(int u, int p) {
+    f[u][0] = p;
+    for (int i = 1; i < 20; ++i) 
+        f[u][i] = f[f[u][i - 1]][i - 1];
+    for (int v : adj[u]) {
+        if (v == p) continue;
+        d[v] = d[u] + 1;
+        dfs(v, u);
+    }
+}
+
+int lca(int u, int v) {
+    if (d[u] < d[v]) swap(u, v);
+    for (int i = 19; i >= 0; --i)
+        if (d[f[u][i]] >= d[v])
+            u = f[u][i];
+    if (u == v) return u;
+    for (int i = 19; i >= 0; --i)
+        if (f[u][i] != f[v][i])
+            u = f[u][i], v = f[v][i];
+    return f[u][0];
+}
+
+int dist(int u, int v) {
+    return d[u] + d[v] - 2 * d[lca(u, v)];
 }
 
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    vector<int> a(n);
-    map<int, int> mp;
-    for (auto &c : a) {
-        cin >> c;
-        mp[c]++;
+    int n, c;
+    cin >> n >> c;
+    for (int i = 0; i < n - 1; ++i) {
+        cin >> a[i];
     }
-    vector<int> s;
-    for (auto c : mp) s.emplace_back(c.x);
-    n = s.size();
-    int res = 0;
-    vector<int> tt(n+1);
-    // int modulo = 1;
-    tt[0] = 1;
     for (int i = 1; i <= n; ++i) {
-        tt[i] = (tt[i-1] % MOD * mp[s[i-1]]) % MOD;
-        // modulo = (modulo * mp[s[i]]) % MOD;
+        adj[i].clear();
+        f[i][0] = 0;
+        d[i] = 0;
     }
-    for (int i = 0; i < n-m+1; ++i) {
-        // modulo *= mp[s[i+m-1]];
-        if (s[i+m-1] - s[i] < m) {
-            // int x = 1, y = 1;
-            // extendedEuclid(tt[i], MOD, x, y);
-            // x = (x % MOD + MOD) % MOD;
-            // x = x * tt[i+m] % MOD;
-            // tt[i+m] / tt[i];
-            int x = tt[i+m];
-            x = ((x % MOD) * fpow(tt[i], MOD-2)) % MOD;
-            res = (res + x) % MOD;
+    for (int i = 0; i < n - 1; ++i) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+
+    for (int i = 1; i <= n; ++i) {
+        store[i] = INF;
+        ver[i].clear();
+    }
+
+    dfs(c, c);
+
+    for (int i = 0; i < 20; ++i) {
+        if (i > 0 && f[c][i-1] == f[c][i]) break;
+
+        if (dist(c, f[c][i]) < store[f[c][i]]) {
+            store[f[c][i]] = dist(c, f[c][i]);
+            ver[f[c][i]].clear();
+            ver[f[c][i]].pb(c);
         }
     }
-    cout << res << "\n";
-    // dbg(s);
+
+    int ans = INF;
+
+    for (int i = 0; i < n - 1; ++i) {
+        int v = a[i];
+        for (int j = 0; j < 20; ++j) {
+            if (j > 0 && f[v][j-1] == f[v][j]) break;
+
+            if (ver[f[v][j]].empty()) continue;
+
+            for (auto u : ver[f[v][j]])
+                ans = min(ans, dist(u, v));
+        }
+
+        for (auto c : ver[v]) {
+            ans = min(ans, dist(v, c));
+        }
+
+        for (int j = 0; j < 20; ++j) {
+            if (j > 0 && f[v][j-1] == f[v][j]) break;
+
+            if (dist(v, f[v][j]) <= store[f[v][j]]) {
+                store[f[v][j]] = dist(v, f[v][j]);
+                // ver[f[v][j]].clear();
+                ver[f[v][j]].pb(v);
+            }
+        }
+
+        cout << ans << " ";
+    }
+    cout << endl;
 }

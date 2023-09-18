@@ -1,47 +1,166 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <string.h>
 
-int main()
-{
-    int n;
-    scanf("%d", &n);
-    int split = (int)ceil(n / 3.0);
-    int sum = 0;
-    n -= split;
+const int INF = 0x3f3f3f3f;
 
-    if (split <= 17){
-        sum += split * 1678;
-    }
-    else if (split <= 34){ 
-        sum += (17 * 1734) + (split - 17) * 1678;
-    }
-    else if (split <= 67){
-        sum += (17 * 1678) + (17 * 1734) + (split - 34) * 2014;
-    }
-    else if (split <= 100){
-        sum += (17 * 1678) + (17 * 1734) + (33 * 2014) + (split - 67) * 2536;
-    }        
-    if (split <= 133){
-        sum += (17 * 1678) + (17 * 1734) + (33 * 2014) + (33 * 2536) + (split - 100) * 2834;
-    }    
-    else {
-        sum += (17 * 1678) + (17 * 1734) + (33 * 2014) + (33 * 2536) + (33 * 2834) + (split - 133) * 2927;
-    }
+int a[111], n;
 
-    if (n <= 33){
-        sum += n * 1728;
-    } else if (n <= 66){
-        sum += (33 * 1786) + (n - 33) * 1728;
-    } else if (n <= 133){
-        sum += (33 * 1728) + (33 * 1786) + (n - 66) * 2074;
-    } else if (n <= 200){
-        sum += (33 * 1728) + (33 * 1786) + (67 * 2074) + (n - 133) * 2612;
-    } else if (n <= 267){
-        sum += (33 * 1728) + (33 * 1786) + (67 * 2074) + (67 * 2612) + (n - 200) * 2919;
-    } else {
-        sum += (33 * 1728) + (33 * 1786) + (67 * 2074) + (67 * 2612) + (67 * 2919) + (n - 267) * 3015;
+void PrintArray(char s[100]) {
+    printf("%s", s);
+    for (int i = 0; i < n; ++i) {
+        printf("%d ", a[i]);
     }
-
-    printf("Total of money : %d", sum + (int)(10.0 * sum / 100.0));
+    printf("\n");
 }
+
+void PrintEvenValue() {
+    printf("Even Value : ");
+    for (int i = 0; i < n; ++i) {
+        if (a[i] % 2 == 0) printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+void PrintValueInRange(int l, int r) {
+    printf("Value in Range [%d, %d] : ", l, r);
+    for (int i = l - 1; i < r; ++i) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+int MaxValue() {
+    int res = -INF;
+    for (int i = 0; i < n; ++i) {
+        if (a[i] > res) res = a[i];
+    }
+    return res;
+}
+
+void AddElement(int x) {
+    a[n] = x;
+    ++n;
+}
+
+int FindValueInArray(int x) {
+    for (int i = 0; i < n; ++i) {
+        if (a[i] == x) return 1;
+    }
+    return 0;
+}
+
+int FindValueIndex(int x)
+{
+    for (int i = 0; i < n; ++i) {
+        if (a[i] == x) return i;
+    }
+    return -1;
+}
+
+void RemoveFirstExist(int x) {
+    for (int i = 0; i < n - 1; ++i) {
+        if (a[i] == x) {
+            for (int j = i; j < n - 1; ++j) {
+                a[j] = a[j + 1];
+            }
+            --n;
+            break;
+        }
+    }
+}
+
+void RemoveAllExist(int x) {
+    int i = 0, j = 0, cnt = 0;
+    while (i < n) {
+        if (a[i] != x) {
+            a[j++] = a[i];
+        } else {
+            cnt++;
+        }
+        ++i;
+    }
+    n -= cnt;
+}
+
+void mergeIncrease(int L, int R)
+{
+    int mid = (L + R) / 2;
+    int i = L, j = mid + 1, k = 0;
+    int tmp[R - L + 1];
+    while (i <= mid && j <= R) {
+        if (a[i] < a[j]) {
+            tmp[k++] = a[i++];
+        } else {
+            tmp[k++] = a[j++];
+        }
+    }
+    while (i <= mid) {
+        tmp[k++] = a[i++];
+    }
+    while (j <= R) {
+        tmp[k++] = a[j++];
+    }
+    for (int i = L; i <= R; ++i) {
+        a[i] = tmp[i - L];
+    }
+}
+
+void mergeDecrease(int L, int R)
+{
+    int mid = (L + R) / 2;
+    int i = L, j = mid + 1, k = 0;
+    int tmp[R - L + 1];
+    while (i <= mid && j <= R) {
+        if (a[i] > a[j]) {
+            tmp[k++] = a[i++];
+        } else {
+            tmp[k++] = a[j++];
+        }
+    }
+    while (i <= mid) {
+        tmp[k++] = a[i++];
+    }
+    while (j <= R) {
+        tmp[k++] = a[j++];
+    }
+    for (int i = L; i <= R; ++i) {
+        a[i] = tmp[i - L];
+    }
+}
+
+void MergeSort(int L, int R, int isIncrease)
+{
+    if (L == R) {
+        return;
+    }
+
+    int mid = (L + R) / 2;
+    MergeSort(L, mid, isIncrease);
+    MergeSort(mid + 1, R, isIncrease);
+
+    if (isIncrease) mergeIncrease(L, R);
+    else mergeDecrease(L, R);
+}
+
+int main() {
+    scanf("%d", &n);
+    for (int i = 0; i < n; ++i) scanf("%d", &a[i]);
+    PrintArray("Array : ");
+    PrintEvenValue();
+    PrintValueInRange(2, 4);
+    printf("Max Value : %d\n", MaxValue());
+    AddElement(100);
+    PrintArray("After Add 100 : ");
+    printf("Find 100 (YES/NO) : %s\n", (FindValueInArray(100) ? "YES" : "NO"));
+    printf("Find 100 (index) : %d\n", FindValueIndex(100));
+    RemoveFirstExist(3);
+    PrintArray("After Remove First Exist 3 : ");
+    RemoveAllExist(1);
+    PrintArray("After Remove All Exist 1 : ");
+    MergeSort(0, n - 1, 1); // 1 : increase , 0 : decrease
+    PrintArray("After Increase Merge Sort : ");
+    MergeSort(0, n-1, 0); // 1 : increase , 0 : decrease
+    PrintArray("After Decrease Merge Sort : ");
+    return 0;
+}
+

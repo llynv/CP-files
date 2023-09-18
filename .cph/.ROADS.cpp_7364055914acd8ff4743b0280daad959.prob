@@ -1,0 +1,1 @@
+{"name":"Local: ROADS","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\ROADS.cpp","tests":[{"id":1688389178015,"input":"2\n1 1000000000000000000\n2 30\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\ROADS.cpp","group":"local","local":true}

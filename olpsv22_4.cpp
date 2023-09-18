@@ -8,6 +8,11 @@ using namespace std;
 #define se second
 #define pb push_back
 #define fill(x, y) memset(x, y, sizeof(x))
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)x.size()
+#define rep(i, a, b) for (int i = a; i < b; ++i)
+#define per(i, a, b) for (int i = a-1; i >= b; --i)
+#define trav(a, x) for (auto &a : x)
 
 string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
 string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
@@ -40,24 +45,25 @@ int32_t main() {
 }
 
 const int INF = 0x3f3f3f3f;
+const int N = 2e3 + 7;
 
-vector<pair<int,int> > adj[10007];
+vector<pair<int,int> > adj[N], rev_adj[N];
 priority_queue< pair<int,int>, vector< pair<int, int> >, greater< pair<int, int> > > pq;
-int dist[10007], rev_dist[10007], app[10007];
+int dist[N], rev_dist[N], app[N], total[N][N];
 
 void dijkstra(int start)
 {
     pq.push(make_pair(0, start));
-    dist[start] = 0;
+    total[start][start] = 0;
     while (!pq.empty())
     {
         auto c = pq.top();
         pq.pop();
         for (auto u : adj[c.se]) {
-            if (dist[u.fi] > dist[c.se] + u.se) {
-                dist[u.fi] = dist[c.se] + u.se;
+            if (total[start][u.fi] > total[start][c.se] + u.se) {
+                total[start][u.fi] = total[start][c.se] + u.se;
                 // road[u.fi] = c.se;
-                pq.push(make_pair(dist[u.fi], u.fi));
+                pq.push(make_pair(total[start][u.fi], u.fi));
             }
         }
     }
@@ -66,16 +72,16 @@ void dijkstra(int start)
 void rev_dijkstra(int start)
 {
     pq.push(make_pair(0, start));
-    rev_dist[start] = 0;
+    total[start][start] = 0;
     while (!pq.empty())
     {
         auto c = pq.top();
         pq.pop();
-        for (auto u : adj[c.se]) {
-            if (rev_dist[u.fi] > rev_dist[c.se] + u.se) {
-                rev_dist[u.fi] = rev_dist[c.se] + u.se;
+        for (auto u : rev_adj[c.se]) {
+            if (total[start][u.fi] > total[start][c.se] + u.se) {
+                total[start][u.fi] = total[start][c.se] + u.se;
                 // road[u.fi] = c.se;
-                pq.push(make_pair(rev_dist[u.fi], u.fi));
+                pq.push(make_pair(total[start][u.fi], u.fi));
             }
         }
     }
@@ -102,29 +108,40 @@ void solve()
         int u, v, t;
         cin >> u >> v >> t;
         adj[u].emplace_back(make_pair(v, t));
-        adj[v].emplace_back(make_pair(u, t));
+        rev_adj[v].emplace_back(make_pair(u, t));
         // cost[u][v] = cost[v][u] = t;
         stg.emplace_back(Graph{u, v, t});
     } 
 
     sort(stg.begin(), stg.end(), cmp);
-    
+
     fill(dist, INF);
+    // fill(total, INF);
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            total[i][j] = INF;
+        }
+    }
+
     dijkstra(1);
+
+    for (int i = 2; i <= n; ++i) {
+        rev_dijkstra(i);
+        // cout << total[i][1] << " ";
+    }
+    // cout << "\n";
 
     while (q--) {
         int s, t;
         cin >> s >> t;
-        fill(rev_dist, INF);
-        rev_dijkstra(s);
-        int res = dist[s];
-        Graph g{0, 0, t};
-        int pos = lower_bound(stg.begin(), stg.end(), g, cmp)- stg.begin();
-        for (int i = 0; i < m; ++i) {
-            if (stg[i].t >= t) {
-                res = min({res, dist[stg[i].u] + t + rev_dist[stg[i].v], dist[stg[i].v] + t + rev_dist[stg[i].u]});
-            }
+        // fill(rev_dist, INF);
+        // rev_dijkstra(s);
+        int res = total[1][s];
+
+        for (int i = sz(stg) - 1; i >= 0; --i) {
+            
         }
+
         cout << res << "\n";
     }
 }

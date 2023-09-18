@@ -1,0 +1,1 @@
+{"name":"Local: cf880div2","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\cf880div2.cpp","tests":[{"id":1687099063678,"input":"5\n3 3 100\n2 1 14\n91 2 13\n36 16 6\n73 8 22","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\cf880div2.cpp","group":"local","local":true}

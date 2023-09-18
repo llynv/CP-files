@@ -30,7 +30,7 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 struct node
 {
     node *child[26];
-    int isStart;
+    int isStart, isEnd;
 };
 
 node *root, *revRoot;
@@ -42,6 +42,7 @@ node *CreateNode()
         p->child[i] =  NULL;
     }
     p->isStart = 0;
+    p->isEnd = 0;
     return p;
 }
 
@@ -56,6 +57,7 @@ void AddNode(const string &s)
         p = p->child[id];
         p->isStart++;
     }
+    p->isEnd = 1;
     // for (int i = (int) s.size() - 1; i >= 0; --i) {
     //     int id = s[i] - 'A';
     //     if (p->parent[id] == NULL) {
@@ -71,15 +73,18 @@ void update(int &cnt, int vals)
     cnt = min(cnt, vals);
 }
 
-int FindFinalChild(int n, node *p, vector<int> &ret)
+void FindFinalChild(int n, node *p, string ret, vector<string> &res)
 {
     bool isFound = false;
     for (int i = 0; i < 26; ++i) {
         if (p->child[i] != NULL) {
-            FindFinalChild(i, p->child[i], ret);
+            FindFinalChild(i, p->child[i], ret + char(i + 'A'), res);
+        }
+        if (p->isEnd) {
+            res.emplace_back(ret);
+            cout << ret << "\n";
         }
     }
-    ret.emplace_back(n);
 }
 
 int CalculateNode(const string &st, const string &en)
@@ -97,17 +102,11 @@ int CalculateNode(const string &st, const string &en)
         // cout << p->isStart << " ";
     }
 
-    vector<int> ret;
-    FindFinalChild(-1, p, ret);
+    string ret = "";
+    vector<string> res;
+    FindFinalChild(-1, p, ret, res);
 
-    // ret.erase(-1);
-    // for (auto c : ret) {
-    //     cout << (char)(c + 'A');
-    // }
-    cout << "\n";
-    dbg(ret);
-    
-
+    dbg(res);
     return cnt;
 }
 
@@ -130,7 +129,7 @@ int32_t main() {
     for (int i = 0; i < m; ++i) {
         string fi, se;
         cin >> fi >> se;
-        reverse(se);
+        // reverse(se);
         cout << CalculateNode(fi, se) << "\n";
     }
     return 0;

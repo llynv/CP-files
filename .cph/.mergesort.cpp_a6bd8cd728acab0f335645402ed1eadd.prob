@@ -1,0 +1,1 @@
+{"name":"Local: mergesort","url":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\mergesort.cpp","tests":[{"id":1687867724373,"input":"7\nA B 1\nB E 3\nE D 3\nC B 4\nA D 7\nE C 2\nC D 1\nA E","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\OneDrive\\Documents\\Workspace\\CP\\mergesort.cpp","group":"local","local":true}
