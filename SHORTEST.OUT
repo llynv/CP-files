@@ -1,0 +1,150 @@
+Input: n = 42, m = 18468
+Output: 952881067
+
+Input: n = 6335, m = 26501
+Output: 803959486
+
+Input: n = 15725, m = 19170
+Output: 42227070
+
+Input: n = 11479, m = 29359
+Output: 383419443
+
+Input: n = 24465, m = 26963
+Output: 812316299
+
+Input: n = 5706, m = 28146
+Output: 5342889
+
+Input: n = 16828, m = 23282
+Output: 747777761
+
+Input: n = 492, m = 9962
+Output: 770661371
+
+Input: n = 2996, m = 11943
+Output: 54752644
+
+Input: n = 4828, m = 5437
+Output: 37240133
+
+Input: n = 14605, m = 32392
+Output: 474356126
+
+Input: n = 154, m = 3903
+Output: 945951918
+
+Input: n = 293, m = 12383
+Output: 463080419
+
+Input: n = 17422, m = 18717
+Output: 163755837
+
+Input: n = 19719, m = 19896
+Output: 858412362
+
+Input: n = 5448, m = 21727
+Output: 767949442
+
+Input: n = 11539, m = 14772
+Output: 917342518
+
+Input: n = 1870, m = 19913
+Output: 918341383
+
+Input: n = 25668, m = 26300
+Output: 368311699
+
+Input: n = 9895, m = 17036
+Output: 701270959
+
+Input: n = 23812, m = 28704
+Output: 103885820
+
+Input: n = 30334, m = 31323
+Output: 813070773
+
+Input: n = 4665, m = 17674
+Output: 296497200
+
+Input: n = 7712, m = 15142
+Output: 922785033
+
+Input: n = 6869, m = 28254
+Output: 152921270
+
+Input: n = 25548, m = 27645
+Output: 483246195
+
+Input: n = 32663, m = 32758
+Output: 234104859
+
+Input: n = 12860, m = 20038
+Output: 781784014
+
+Input: n = 8724, m = 9742
+Output: 34980317
+
+Input: n = 779, m = 27530
+Output: 249642009
+
+Input: n = 3036, m = 12317
+Output: 705541515
+
+Input: n = 1843, m = 22191
+Output: 316333567
+
+Input: n = 289, m = 30107
+Output: 391626015
+
+Input: n = 8943, m = 9041
+Output: 29657749
+
+Input: n = 19265, m = 22649
+Output: 698148688
+
+Input: n = 23806, m = 27447
+Output: 510360201
+
+Input: n = 6730, m = 15891
+Output: 76359117
+
+Input: n = 15351, m = 24371
+Output: 564775781
+
+Input: n = 15007, m = 31102
+Output: 922718430
+
+Input: n = 3549, m = 24394
+Output: 362078981
+
+Input: n = 12624, m = 19630
+Output: 969230282
+
+Input: n = 19955, m = 24085
+Output: 321309811
+
+Input: n = 11841, m = 18757
+Output: 857946131
+
+Input: n = 4967, m = 7377
+Output: 553639122
+
+Input: n = 13932, m = 26309
+Output: 131918453
+
+Input: n = 16945, m = 32440
+Output: 53919886
+
+Input: n = 11324, m = 24627
+Output: 834805886
+
+Input: n = 5538, m = 21539
+Output: 286232925
+
+Input: n = 2083, m = 16119
+Output: 110913727
+
+Input: n = 16542, m = 22930
+Output: 396009983
+

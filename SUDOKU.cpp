@@ -48,6 +48,8 @@ bool isValidPlacement(int currentNumber, int column, int row)
         && !boxCheck(column, row, currentNumber);
 }
 
+int cnt = 0;
+
 void boardInput()
 {
     for (int i = 0; i < BSIZE; ++i){
@@ -55,6 +57,9 @@ void boardInput()
             char num;
             cin >> num;
             board[i][j] = num - '0';
+            if (board[i][j] == 0){
+                ++cnt;
+            }
         }
     }
 }
@@ -82,58 +87,46 @@ void insertNum()
     }
 }
 
-bool solve()
+void printBoard()
 {
+    for (int row = 0; row < BSIZE; ++row){
+        for (int column = 0; column < BSIZE; ++column){
+            cout << board[row][column];
+        }
+        cout << "\n";
+    }
+    cout << "\n";
+}
+
+void solve()
+{
+    if (cnt == 0){
+        printBoard();
+        return;
+    }
+
     for (int row = 0; row < BSIZE; ++row){
         for (int column = 0; column < BSIZE; ++column){
             if (board[row][column] == 0){
                 for (auto number: validNumber[row][column]){
                     if (isValidPlacement(number, column, row)){
                         board[row][column] = number;
-
-                        if (solve()){
-                            return true;
-                        } else {
-                            board[row][column] = 0;
+                        cnt--;
+                        if (cnt == 0){
+                            solve();
                         }
+                        board[row][column] = 0;
+                        cnt++;
                     }
                 }
-                return false;
             }
         }
-    }
-}
-
-void printBoard()
-{
-    for (int i = 0; i < 25; ++i){
-        cout << "-";
-    }
-    cout << "\n";
-
-    for (int row = 0; row < BSIZE; ++row){
-
-        cout << "| ";
-
-        for (int column = 0; column < BSIZE; ++column){
-            cout << board[row][column] << " ";
-            if ((column + 1) % 3 == 0){
-                cout << "| ";
-            }
-        }
-        if ((row + 1) % 3 == 0){
-            cout << "\n";
-            for (int i = 0; i < 25; ++i){
-                cout << "-";
-            }
-        }
-        cout << "\n";
     }
 }
 
 int32_t main()
 {
-    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+    // ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
     boardInput();
     insertNum();
     solve();

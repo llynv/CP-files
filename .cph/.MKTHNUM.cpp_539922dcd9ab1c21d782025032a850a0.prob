@@ -1,0 +1,1 @@
+{"name":"Local: MKTHNUM","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\MKTHNUM.cpp","tests":[{"id":1696484988920,"input":"7 3\n1 5 2 6 3 7 4\n2 5 3\n4 5 2\n1 7 3","output":"5\n6\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\MKTHNUM.cpp","group":"local","local":true}

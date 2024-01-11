@@ -1,0 +1,1 @@
+{"name":"Local: happiness","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\happiness.cpp","tests":[{"id":1701525892518,"input":"5 3\n5 2\n4 2\n3 1\n","output":""},{"id":1701525903460,"input":"4 3\n5 0\n1 4\n2 2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\happiness.cpp","group":"local","local":true}

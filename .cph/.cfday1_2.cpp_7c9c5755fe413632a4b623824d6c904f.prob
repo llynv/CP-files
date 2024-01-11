@@ -1,0 +1,1 @@
+{"name":"Local: cfday1_2","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\cfday1_2.cpp","tests":[{"id":1699769797044,"input":"5\n3\n1 2 3\n5\n2 3 1 5 2\n4\n5 7 12 6\n2\n0 2\n2\n0 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\cfday1_2.cpp","group":"local","local":true}

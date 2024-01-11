@@ -1,0 +1,1 @@
+{"name":"Local: COUNTRY","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\COUNTRY.cpp","tests":[{"id":1696776747091,"input":"4 2\n1 4\n1 2\n2 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\COUNTRY.cpp","group":"local","local":true}

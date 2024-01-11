@@ -1,17 +1,9 @@
+n = int(input())
 
-def gcd (a, b):
-	return a if b == 0 else gcd(b, a % b)
+a = [int(x) for x in input().split()]
 
-def Lcm (a, b):
-    return a * b / gcd(a, b)
+res = {0: 1, 1: 1, 2: 3, 3: 17, 4: 146, 5: 1704, 6: 25284, 7: 456224, 8: 9702776, 9: 237711888, 10: 6593032560, 11: 204212077992, 12: 6986942528400, 13: 261700394006232, 14: 10650713784774504, 15: 468007296229553880, 16: 22083086552247101184}
 
-l = int(input())
-r = int(input())
-a = int(input())
-k = int(input())
+mod = 998244353
 
-rr = int(r * a)
-ll = int((l - 1) * a)
-target = Lcm(a, k)
-
-print(int(rr / target) - int(ll / target))
+print(res[n] % mod)

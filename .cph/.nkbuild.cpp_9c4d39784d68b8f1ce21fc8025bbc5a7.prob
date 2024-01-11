@@ -1,0 +1,1 @@
+{"name":"Local: nkbuild","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\nkbuild.cpp","tests":[{"id":1700702753874,"input":"6 7 3\n1 2 3\n1 2 10\n1 4 1\n4 2 2\n2 3 10\n5 2 3\n1 2 1\n5 6 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\nkbuild.cpp","group":"local","local":true}

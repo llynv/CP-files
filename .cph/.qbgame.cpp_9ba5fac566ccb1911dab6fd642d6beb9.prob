@@ -1,0 +1,1 @@
+{"name":"Local: qbgame","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\qbgame.cpp","tests":[{"id":1700712487416,"input":"2\n-22 2\n-33 45\n56 -60\n-8 -38\n79 66\n-10 -23\n99 46\n1 -55","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\qbgame.cpp","group":"local","local":true}

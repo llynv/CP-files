@@ -1,0 +1,1 @@
+{"name":"Local: testbt","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\testbt.cpp","tests":[{"id":1704510247410,"input":">=\n<\n>=\n>=\n<\n<\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\testbt.cpp","group":"local","local":true}

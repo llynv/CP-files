@@ -46,8 +46,45 @@ int32_t main() {
 }
 
 const int INF = 0x3f3f3f3f3f;
+const int N = 1e6 + 11;
+
+struct SegmentTree      
+{
+    int curVal, maxVal;
+} it[11000111];
+
+void update (int index, int L, int R, int l, int r, int val)
+{
+    if (L > r || R < l) return;
+    if (l <= L && R <= r) {
+        dbg(L, R);
+        it[index].curVal += val;
+        it[index].maxVal = max(it[index].curVal, it[index].maxVal);
+        return;
+    }
+    int mid = (L + R) >> 1;
+    update (index << 1, L, mid, l, r, val);
+    update (index << 1 | 1, mid + 1, R, l, r, val);
+    it[index].curVal = it[index << 1].curVal + it[index << 1 | 1].curVal;
+    it[index].maxVal = max({it[index].curVal, it[index].maxVal, it[index << 1].maxVal, it[index << 1 | 1].maxVal});
+}
+
+int get (int index, int L, int R, int l, int r)
+{
+    if (L > r || R < l) return 0;
+    if (l <= L && R <= r) return it[index].curVal;
+    int mid = (L + R) >> 1;
+    return max(get(index << 1, L, mid, l, r), get(index << 1 | 1, mid + 1, R, l, r));
+}
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    rep (i, 0, n) {
+        int l, r, v;
+        cin >> l >> r >> v;
+        update (1, 1, N, l, r, v);
+    }
+    cout << get(1, 1, N, 3, 6) << "\n";
 }

@@ -38,11 +38,13 @@ template<class T> T cube(T x) { return x * x * x; }
 
 void solve();
 
+#define LOCAL;
+
 int32_t main() {
 
     #ifdef LOCAL
         freopen("input.txt", "r", stdin);
-        // freopen("output.txt", "w", stdout);
+        freopen("output.txt", "w", stdout);
     #endif
 
     ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
@@ -60,7 +62,8 @@ int a[N], b[N];
 
 struct SegmentTree
 {
-    int up, down;
+    int L, R;
+    bool isInc;
 };
 
 SegmentTree it[4 * N];
@@ -68,28 +71,29 @@ SegmentTree it[4 * N];
 void build (int index, int L, int R)
 {
     if (L == R) {
-        it[index].up = a[L - 1];
-        it[index].down = b[L - 1];
+        it[index].L = it[index].R = b[L-1];
+        it[index].isInc = true;
         return;
     }
 
     int mid = (L + R) >> 1;
     build (index * 2, L, mid);
     build (index * 2 + 1, mid + 1, R);
-    it[index].up = max(it[index * 2].up, it[index * 2 + 1].up);
-    it[index].down = max(it[index * 2].down, it[index * 2 + 1].down);
+    it[index].L = it[index * 2].L;
+    it[index].R = it[index * 2 + 1].R;
+    it[index].isInc = (it[index * 2].isInc && it[index * 2 + 1].isInc && it[index * 2].R <= it[index * 2 + 1].L);
 }
 
-SegmentTree get_max (int index, int L, int R, int l, int r)
+SegmentTree getInc (int index, int L, int R, int l, int r)
 {
-    if (L > r || R < l) return {-INF, -INF};
+    if (L > r || R < l) return {INF, -1, true};
     if (l <= L && R <= r) {
         return it[index];
     }
     int mid = (L + R) >> 1;
-    SegmentTree v1 = get_max (index * 2, L, mid, l, r);
-    SegmentTree v2 = get_max (index * 2 + 1, mid + 1, R, l, r);
-    SegmentTree res = {max(v1.up, v2.up), max(v1.down, v2.down)};
+    SegmentTree v1 = getInc (index * 2, L, mid, l, r);
+    SegmentTree v2 = getInc (index * 2 + 1, mid + 1, R, l, r);
+    SegmentTree res = {v1.L, v2.R, v1.isInc && v2.isInc && v1.R <= v2.L};
     return res;
 }
 
@@ -111,30 +115,34 @@ void solve()
 
     if (cntA != cntB) return void(cout << "NO\n");
     
+
     bool isDif = false;
     int start = -1, currentPos = 0;
     bool isInc = true;
     int mxA = -1, miA = INF, mxB = -1, miB = INF;
     
-    map<int, vector<int>> posA, posB;
+    for (int i = 0; i < n; ++i) {
 
-    rep (i, 0, n) {
-        posA[a[i]].pb(i);
-        posB[b[i]].pb(i);
-    }
+        if (a[i] != b[i] && !isDif) {
+            isDif = true;
+            start = (start == -1 ? i : start);
+            isInc = true;
+            mxA = -1, miA = INF, mxB = -1, miB = INF;
+        }   
+        
+        if (isDif) {
+            mxA = max(mxA, a[i]);
+            miA = min(miA, a[i]);
+            mxB = max(mxB, b[i]);
+            miB = min(miB, b[i]);
 
-    for (auto ia : posA) {
-        int val = ia.fi;
-        for (int i = 0; i < sz(posA[val]); ++i) {
-            int pA = posA[val][i];
-            int pB = posB[val][i];
-            if (pA == pB) continue;
+            if (i > 0 && b[i] < b[i-1]) isInc = false;
 
-            if (pA < pB) {
-                int l = pA + 1, r = pB + 1;
+            if (isInc && mxA == mxB && miA == miB) {
+                isDif = false;
+                start = -1;
             }
         }
     }
-
     cout << (isDif ? "NO\n" : "YES\n");
 }

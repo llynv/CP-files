@@ -1,76 +1,123 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 #define int long long
 #define ii pair<int, int>
 #define fi first
 #define se second
+#define all(x) (x).begin(), (x).end()
 
 const int INF = 0x3f3f3f3f;
 const int N = 1e5 + 7;
 
-vector<int> it[4 * N];
-int a[N], imax[N];
+int a[N];
 
-void build(int index, int L, int R)
+struct itnode
+{
+    itnode *Left, *Right;
+    int cnt = 0;
+
+    itnode() {
+        Left = Right = nullptr;
+        cnt = 0;
+    }
+};
+
+vector<itnode*> vers;
+
+void CreateNode(itnode *&root) {
+    root = new itnode();
+    root->Left = new itnode();
+    root->Right = new itnode();
+}
+
+void build (itnode *&root, int L, int R) {
+    if (L == R) {
+        root->cnt = 0;
+        return;
+    }
+    int mid = (L + R) >> 1;
+    CreateNode(root);
+    build (root->Left, L, mid);
+    build (root->Right, mid + 1, R);
+}
+
+void update (itnode *&root, int L, int R, int x)
 {
     if (L == R) {
-        it[index].emplace_back(a[L-1]);
+        root = new itnode();
+        root->cnt = 1;
         return;
     }
 
-    int mid = (L + R) / 2;
-    build(index << 1, L, mid);
-    build(index << 1 | 1, mid + 1, R);
-    // it[index].resize(it[index << 1].size() + it[index << 1 | 1].size());
-    it[index].assign(R - L + 1, 0);
-    merge(it[index << 1].begin(), it[index << 1].end(), it[index << 1 | 1].begin(), it[index << 1 | 1].end(), it[index].begin());
+    int mid = (L + R) >> 1;
+    itnode *tmp = new itnode();
+    *tmp = *root;
+
+    if (x <= mid) {
+        update (tmp->Left, L, mid, x);
+    } else {
+        update (tmp->Right, mid + 1, R, x);
+    }
+    tmp->cnt = tmp->Left->cnt + tmp->Right->cnt;
+    root = tmp;
 }
 
-int get(int index, int L, int R, int l, int r, int x)
+int get (itnode *it1, itnode *it2, int L, int R, int k)
 {
-    if (L > r || R < l) return 0;
-    if (L >= l && R <= r) {
-        if (it[index].front() >= x) return 0;
-        if (it[index].back() < x) return it[index].size();
-        return lower_bound(it[index].begin(), it[index].end(), x)- it[index].begin();
+    if (L == R) {
+        return L;
     }
 
-    int mid = (L + R) / 2;
-    return get(index << 1, L, mid, l, r, x) + get(index << 1 | 1, mid + 1, R, l, r, x);
+    int numb = it2->Left->cnt - it1->Left->cnt;
+    int mid = (L + R) >> 1;
+    if (numb >= k) {
+        return get(it1->Left, it2->Left, L, mid, k);
+    } else {
+        return get(it1->Right, it2->Right, mid + 1, R, k - numb);
+    }
 }
 
 void solve()
 {
     int n, q; 
     cin >> n >> q;
-    for (int i = 0; i < n; ++i) cin >> a[i];
-    build(1, 1, n);
-    for (int i = 0; i < q; ++i)
-    {
+    vector<int> b;
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+        b.push_back(a[i]);
+    }
+    sort(all(b));
+    set<ii> s;
+    for (int i = 0; i < n; ++i) {
+        s.insert(ii{b[i], i+1});
+    }
+    vector<int> lv(n+1), ans(n+1);
+    for (int i = 1; i <= n; ++i) {
+        auto c = s.lower_bound(ii{a[i], -1});
+        lv[i] = (*c).se;
+        ans[lv[i]] = a[i];
+        s.erase(c);
+    }
+
+    itnode *ver0 = new itnode();
+    build(ver0, 1, n);
+    vers.push_back(ver0);
+    for (int i = 1; i <= n; ++i) {
+        itnode *nver = new itnode();
+        *nver = *vers.back();
+        update(nver, 1, n, lv[i]);
+        vers.push_back(nver);
+    }
+
+    while (q--) {
         int l, r;
         cin >> l >> r;
-
-        int med = (r - l) / 2 + 1;
-        int lo = it[1].front(), hi = it[1].back(), mid, val;
-
-        while (lo <= hi) {
-            mid = (lo + hi) / 2;
-
-            val = get(1, 1, n, l, r, mid);
-
-            if (val < med) {
-                lo = mid + 1;
-            } else {
-                hi = mid - 1;
-            }
-        }
-        // dbg(med, ans);
-        cout << lo-1 << "\n";
+        itnode *it1 = vers[l-1];
+        itnode *it2 = vers[r];
+        cout << ans[get(it1, it2, 1, n, (r - l + 2) / 2)] << "\n";
     }
+
 }
 
 int32_t main() {
@@ -81,4 +128,3 @@ int32_t main() {
         solve();
     return 0;
 }
-

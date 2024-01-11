@@ -1,0 +1,1 @@
+{"name":"Local: B","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\HSGTP HN 2023\\B.cpp","tests":[{"id":1696403624494,"input":"10\n3 4 8 4 5 6 1 7 4 6","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\HSGTP HN 2023\\B.cpp","group":"local","local":true}

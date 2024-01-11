@@ -59,49 +59,58 @@ const int N = 1e3 + 7;
 int a[N][N], f[N][N];
 ii path[N][N];
 
+int calc(int n)
+{
+    string s = to_string(n);
+    int res = 0, i = sz(s) - 1;
+    while (s.back() == '0') {
+        // s.erase(s.end()-1);
+        s.pop_back();
+        ++res;
+    }
+    return res;
+}
+
 void solve()
 {
     int n, m;
     cin >> n >> m;
     rep(i, 1, n+1) rep(j, 1, m+1) cin >> a[i][j];
-    rep (i, 2, m+1) {
-        path[1][i] = {1, i-1};
-        f[1][i] = f[1][i-1] * a[1][i];
-    }
-    rep (i, 2, n+1) {
-        path[i][1] = {i-1, 1};
-        f[i][1] = f[i-1][1] * a[i][1];
-    }
-    path[1][1] = {-1, -1};
     f[1][1] = a[1][1];
-    for (int i = 2; i <= n; ++i) {
-        for (int j = 2; j <= m; ++j) {
-            if (f[i][j-1] * a[i][j] % 10 != 0) {
-                f[i][j] = f[i][j-1] * a[i][j];
-                path[i][j] = {i, j-1};
-            } else {
-                f[i][j] = f[i-1][j] * a[i][j];
-                path[i][j] = {i-1, j};
-            }
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= m; ++j) {
+            
         }
     }
     rep (i, 1, n+1) {
         rep (j, 1, m+1) {
-            cout << path[i][j] << " ";
+            // cout << path[i][j] << " ";
+            cout << f[i][j] << " ";
         }
         cout << endl;
     }
     int i = n, j = m;
-    string s;
-    while (i != -1 && j != -1) {
-        if (path[i][j].fi == i) {
-            s += 'L';
-        } else {
-            s += 'D';
+    string s = "";
+    for (int e = 0; e < n+m-2; ++e) {
+        if (i == 1) {
+            j--;
+            s += "D";
+            continue;
         }
-        i = path[i][j].fi;
-        j = path[i][j].se;
+        if (j == 1) {
+            i--;
+            s += "L";
+            continue;
+        }
+
+        if (calc(f[i][j-1]) <= calc(f[i][j])) {
+            j--;
+            s += "L";
+        } else {
+            i--;
+            s += "D";
+        }
     }
-    // reverse(all(s));
-    cout << s;
+    reverse(all(s));
+    cout << calc(f[n][m]) << "\n" << s;
 }

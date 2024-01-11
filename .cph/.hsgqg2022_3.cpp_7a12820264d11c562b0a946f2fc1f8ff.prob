@@ -1,0 +1,1 @@
+{"name":"Local: hsgqg2022_3","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\hsgqg2022_3.cpp","tests":[{"id":1699891740019,"input":"4 5 3 1 4\n1 2 13\n2 3 10\n3 1 15\n3 4 16\n4 1 18\n1 3 21\n2 3 5\n2 4 20","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\hsgqg2022_3.cpp","group":"local","local":true}

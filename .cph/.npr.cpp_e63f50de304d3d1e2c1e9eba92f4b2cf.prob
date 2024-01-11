@@ -1,0 +1,1 @@
+{"name":"Local: npr","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\npr.cpp","tests":[{"id":1697165482806,"input":"perfect\nrhyme\ncrime\ntime\n\ncrime\nrhyme\ntime\nime\ne\nyme\naaa","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\npr.cpp","group":"local","local":true}

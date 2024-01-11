@@ -54,31 +54,12 @@ int32_t main() {
 }
 
 const int INF = 0x3f3f3f3f3f;
-const int N = 2e5 + 7;
 
-vector<int> it[4 * N];
-int a[N];
 
-void build (int index, int L, int R)
-{
-    if (L == R) {
-        it[index].pb(a[L-1]);
-        return;
-    }
-
-    int mid = (L + R) >> 1;
-    build(index * 2, L, mid);
-    build(index * 2 + 1, mid + 1, R);
-    it[index].resize(R - L + 1);
-    merge(all(it[index * 2]), all(it[index * 2 + 1]), it[index].begin());
-}
-
-int get(int index, int l, int r)
-{
-    
-}
 
 void solve()
 {
-    
+    string s[] = {"co", "cong", "mai", "sat", "co", "ngay", "nen", "kim"};
+    sort (s, s + 8);
+    for (int i = 0; i < 8; ++i) cout << s[i] << endl;
 }
