@@ -37,21 +37,19 @@ int32_t main() {
 const int INF = 0x3f3f3f3f;
 const int N = 100011;
 
-vector<int> adj[N];
-int vst[N], res;
+vector<int> adj[N], adj2[N];
+int vst[N], res, dist[N], mxE;
 
-void dfs(int n, int cnt)
+int dfs(int n)
 {
-    vst[n] = true;
-    res = max(res, cnt);
-    cout << n << " " << cnt << "\n";
+    if (dist[n]) return dist[n];
     for (auto u : adj[n]) {
-        if (!vst[u]) {
-            dfs(u, cnt+1);
-        }
+        dist[u] = dfs(u);
+        dist[n] = max(dist[n], dist[u] + 1);
     }
-}
 
+    return dist[n];
+}
 void solve()
 {
     int n, m;
@@ -63,9 +61,8 @@ void solve()
     }
 
     for (int i = 1; i <= n; ++i) {
-        if (!vst[i]) {
-            dfs(i, 0);
-        }
+        res = max(res, dfs(i));
     }
+
     cout << res;
 }

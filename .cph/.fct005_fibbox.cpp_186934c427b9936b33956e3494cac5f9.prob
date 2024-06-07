@@ -1,0 +1,1 @@
+{"name":"Local: fct005_fibbox","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\fct005_fibbox.cpp","tests":[{"id":1701275237666,"input":"6 3\n1 2 3 4 5 6\n1 3\n2 5\n1 6\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\fct005_fibbox.cpp","group":"local","local":true}

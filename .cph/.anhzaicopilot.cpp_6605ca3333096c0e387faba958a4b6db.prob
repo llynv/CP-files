@@ -1,0 +1,1 @@
+{"name":"Local: anhzaicopilot","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\anhzaicopilot.cpp","tests":[{"id":1696756396797,"input":"abcabc\nabc\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\anhzaicopilot.cpp","group":"local","local":true}

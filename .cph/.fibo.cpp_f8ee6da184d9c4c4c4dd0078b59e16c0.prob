@@ -1,0 +1,1 @@
+{"name":"Local: fibo","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\fibo.cpp","tests":[{"id":1702317427250,"input":"50\n","output":""},{"id":1702318515395,"input":"1","output":""},{"id":1702318517523,"input":"0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\fibo.cpp","group":"local","local":true}

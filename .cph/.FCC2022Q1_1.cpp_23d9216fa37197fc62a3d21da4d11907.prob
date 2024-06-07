@@ -1,0 +1,1 @@
+{"name":"Local: FCC2022Q1_1","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\FCC2022Q1_1.cpp","tests":[{"id":1700167186832,"input":"4\n1 10 1 123\n1 10 134 47\n3 4 7 5\n4 8 9 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\FCC2022Q1_1.cpp","group":"local","local":true}

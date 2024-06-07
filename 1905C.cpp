@@ -1,0 +1,169 @@
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#pragma GCC optimize("O3", "unroll-loops")
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define LINVG
+#define int long long
+#define ii pair<int, int>
+#define fi first
+#define se second
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) ((int)(x).size())
+#define rep(i, a, b) for (int i = (a); i < (b); ++i)
+#define per(i, a, b) for (int i = (b)-1; i >= (a); --i)
+#define trav(a, x) for (auto &a : x)
+#define endl "\n"
+#define fill(x, y) memset(x, y, sizeof(x))
+#define heapMax priority_queue<int>
+#define heapMin priority_queue<int, vector<int>, greater<int>>
+
+string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
+string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
+
+template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
+template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }
+template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator>>(ostream &is, const T_container &v) { for (auto &c : v) is >> c; }
+void dbg_out() { cerr << endl; }
+template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
+#ifdef LINVG
+#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
+#else
+#define dbg(...)
+#endif
+
+template<class T> T gcd(T a, T b) { T r; while (b != 0) { r = a % b; a = b; b = r; } return a; }
+template<class T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
+template<class T> T sqr(T x) { return x * x; }
+template<class T> T cube(T x) { return x * x * x; }
+
+
+void solve();
+
+int32_t main() {
+
+    #ifdef LOCAL
+        freopen("input.txt", "r", stdin);
+        // freopen("output.txt", "w", stdout);
+    #endif
+
+    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
+
+const int INF = 0x3f3f3f3f3f;
+
+void solve()
+{
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    bool isInc = true;  
+    for (int i = 0; i < n-1; ++i) {
+        if (s[i] > s[i+1]) {
+            isInc = false;
+            break;
+        }
+    }
+
+    if (isInc) return void(cout << "0\n");
+
+    vector<vector<int>> f(20, vector<int>(n+1));
+ 
+    for (int i = 0; i < n; ++i)
+        f[0][i] = i;
+ 
+    for (int i = 1; i < 20; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (j + (1 << i) - 1 >= n) break;
+            if (s[f[i-1][j]] >= s[f[i-1][j+(1<<(i-1))]])
+                f[i][j] = f[i-1][j];
+            else
+                f[i][j] = f[i-1][j+(1<<(i-1))];
+        }
+    }
+ 
+    auto getMin = [&] (int l, int r) {
+        int k = log2(r-l+1);
+        if (s[f[k][l]] >= s[f[k][r-(1<<k)+1]])
+            return f[k][l];
+        else
+            return f[k][r-(1<<k)+1];
+    };
+ 
+    auto findK = [&] (int k) {
+        int x = 0;
+        string s1 = "";
+        for (int i = 0; i < k; ++i)
+        {
+            int y = getMin(x, n-k+i);
+            s1 += s[y];
+            x = y + 1;
+        }
+        return s1;
+    };
+
+    int res = 0;
+    int x = 0;
+    vector<bool> vis(n);
+    vector<int> pos;
+    string tmp = "";
+    for (int i = 0; x < n; ++i)
+    {
+        int y = getMin(x, n-1);
+        res++;
+        tmp += s[y];
+        vis[y] = 1;
+        pos.pb(y);
+        x = y + 1;
+    }
+
+    // dbg(tmp);
+
+    string str = "";
+    for (int i = 0; i < n; ++i) {
+        if (vis[i]) continue;
+        str += s[i];
+    }
+    isInc = true;
+    for (int i = 0; i < str.size()-1; ++i) {
+        if (str[i] > str[i+1]) {
+            isInc = false;
+            break;
+        }
+    }
+
+    vector<char> ans(n);
+
+    for (int i = 0; i < n; ++i) {
+        if (vis[i]) continue;
+        ans[i] = s[i];
+    }
+
+    int cnt = 0;
+    for (int i = pos.size()-1; i >= 0; --i) {
+        ans[pos[i]] = tmp[cnt++];
+    }
+
+    isInc = true;
+    for (int i = 0; i < ans.size()-1; ++i) {
+        if (ans[i] > ans[i+1]) {
+            isInc = false;
+            break;
+        }
+    }
+
+    if (!isInc) return void(cout << "-1\n");
+
+    for (int i = 0; i < sz(tmp); ++i) res -= (tmp[i] == tmp[0]);
+
+    cout << res << "\n";
+}

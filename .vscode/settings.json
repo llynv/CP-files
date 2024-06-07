@@ -1,5 +1,229 @@
 {
+    "code-runner.saveAllFilesBeforeRun": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.runInTerminal": true,
+    "workbench.startupEditor": "none",
+    "debug.onTaskErrors": "debugAnyway",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+    "git.ignoreMissingGitWarning": true,
+    "python.defaultInterpreterPath": "C:\\Users\\asus\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "workbench.editorAssociations": {
+        "*.pdf": "default",
+        "*.beam": "default",
+        "*.jar": "default",
+        "*.6": "default",
+        "*.tar": "default",
+        "*.bacpac": "default"
+    },
+    "explorer.confirmDelete": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "redhat.telemetry.enabled": true,
+    "remote.SSH.remotePlatform": {
+        "192.168.154.139": "linux",
+        "192.168.154.135": "linux",
+        "192.168.211.128": "linux",
+        "192.168.211.134": "linux",
+        "192.168.211.138": "linux"
+    },
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.fontSize": 16,
+    "git.openRepositoryInParentFolders": "never",
+    "launch": {
+        "configurations": []
+    },
+    "window.commandCenter": true,
+    "discord.lowerDetailsDebugging": "Debugging: {file_name}",
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.accessibilitySupport": "off",
+    "discord.lowerDetailsEditing": "Workspace: practice",
+    "cmake.configureOnOpen": true,
+    "editor.fontFamily": "Fantasque Sans Mono Medium",
+    "editor.fontSize": 18,
+    "editor.fontLigatures": true,
+    "editor.folding": true,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.lineHeight": 26,
+    "editor.lineNumbers": "on",
+    "editor.minimap.enabled": false,
+    "editor.overviewRulerBorder": false,
+    "explorer.openEditors.visible": 1,
+    "workbench.editor.showIcons": false,
+    "workbench.statusBar.visible": true,
+    "breadcrumbs.enabled": true,
+    "window.menuBarVisibility": "toggle",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorStyle": "underline",
+    "editor.cursorSurroundingLines": 10,
+    "editor.smoothScrolling": true,
+    "editor.wordWrap": "on",
+    // "editor.cursorWidth": 5,
+    // "editor.fontWeight": "400",
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "workbench.colorCustomizations": {
+        // "[YOUR_THEME]": {
+        // "editor.background": "#282c34",
+        // "badge.background": "#282c34",
+        // "sideBar.background": "",
+        // "tab.activeBackground": "#282c34",
+        // "activityBar.background": "#282c34",
+        // "sideBar.background": "#282c34",
+        "tab.activeBorder": "#946bc9",
+        "tab.activeBorderTop": "#45A9F9",
+        "tab.activeBackground": "#282c40",
+        "tab.activeForeground": "#E6E6E6",
+        "tab.border": "#282c34",
+        "tab.unfocusedActiveBorder": "#282c34",
+        "tab.unfocusedActiveForeground": "#E6E6E6",
+        "tab.hoverBackground": "#282c34",
+        "tab.hoverForeground": "#E6E6E6",
+        "tab.hoverBorder": "#946bc9",
+        
+        // "editorIndentGuide.activeBackground": "#ff0000",
+        // "editorIndentGuide.background": "#ff00ff",
+        "editorIndentGuide.activeBackground1": "#FFB86C",
+        "editorIndentGuide.activeBackground2": "#FF75B5",
+        "editorIndentGuide.activeBackground3": "#45A9F9",
+        "editorIndentGuide.activeBackground4": "#B084EB",
+        "editorIndentGuide.activeBackground5": "#2c2525",
+        "editorIndentGuide.activeBackground6": "#19f9d8",
+        "editorIndentGuide.background1": "#FFB86C",
+        "editorIndentGuide.background2": "#FF75B5",
+        "editorIndentGuide.background3": "#45A9F9",
+        "editorIndentGuide.background4": "#B084EB",
+        "editorIndentGuide.background5": "#E6E6E6",
+        "editorIndentGuide.background6": "#19f9d8",
+        "editorBracketHighlight.foreground1": "#FFB86C",
+        "editorBracketHighlight.foreground2": "#FF75B5",
+        "editorBracketHighlight.foreground3": "#45A9F9",
+        "editorBracketHighlight.foreground4": "#B084EB",
+        "editorBracketHighlight.foreground5": "#E6E6E6",
+        "editorBracketHighlight.foreground6": "#19f9d8",
+        "terminal.foreground": "#E6E6E6",
+        "editor.tokenColorCustomizations": {
+            "textMateRules": [
+                {
+                    "scope": "entity.name.function",
+                    "settings": {
+                        "foreground": "#19f9d8"
+                    }
+                },
+                {
+                    "scope": "variable.parameter",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.readwrite",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.property",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.declaration",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.constant",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.declaration",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.readwrite",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.constant",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.declaration",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.readwrite",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.constant",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+                {
+                    "scope": "variable.other.object.property.declaration",
+                    "settings": {
+                        "foreground": "#B084EB"
+                    }
+                },
+            ],
+        },
+        // }
+    },
+    "cph.language.cpp.Args": "-std=c++17",
+    "cph.general.timeOut": 2000,
+    "cph.language.cpp.SubmissionCompiler": "GNU G++17 9.2.0 (64 bit, msys 2)",
+    "cph.general.useShortCodeForcesName": true,
+    "cph.general.defaultLanguageTemplateFileLocation": "C:\\Users\\asus\\Documents\\Workspace\\CP\\template.cpp",
+    "editor.fontVariations": false,
     "files.associations": {
+        "*.tpp": "cpp",
+        "*.hxx": "cpp",
+        "*.h++": "cpp",
+        "*.hh": "cpp",
+        "*.ii": "cpp",
+        "*.cc": "cpp",
+        "*.cp": "cpp",
+        "*.cxx": "cpp",
+        "*.c++": "cpp",
+        "*.c": "c",
         "random": "cpp",
         "iostream": "cpp",
         "fstream": "cpp",
@@ -26,66 +250,71 @@
         "unordered_set": "cpp",
         "stdio.h": "c",
         "cmath": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "atomic": "cpp",
+        "cctype": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp",
+        "clocale": "cpp",
+        "codecvt": "cpp",
+        "complex": "cpp",
+        "condition_variable": "cpp",
+        "csetjmp": "cpp",
+        "csignal": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cuchar": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "exception": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp",
+        "set": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "future": "cpp",
+        "iomanip": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "mutex": "cpp",
+        "scoped_allocator": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "thread": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp",
+        "string_view": "cpp",
+        "format": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "stacktrace": "cpp",
+        "variant": "cpp",
+        "compare": "cpp",
+        "any": "cpp",
+        "optional": "cpp",
+        "barrier": "cpp",
+        "bit": "cpp",
+        "charconv": "cpp",
+        "concepts": "cpp",
+        "coroutine": "cpp",
+        "expected": "cpp",
+        "source_location": "cpp",
+        "latch": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "spanstream": "cpp",
+        "stdfloat": "cpp",
+        "stop_token": "cpp",
+        "syncstream": "cpp"
     },
-    "C_Cpp.errorSquiggles": "disabled",
-    "C_Cpp_Runner.cCompilerPath": "gcc",
-    "C_Cpp_Runner.cppCompilerPath": "g++",
-    "C_Cpp_Runner.debuggerPath": "gdb",
-    "C_Cpp_Runner.cStandard": "",
-    "C_Cpp_Runner.cppStandard": "",
-    "C_Cpp_Runner.msvcBatchPath": "",
-    "C_Cpp_Runner.useMsvc": false,
-    "C_Cpp_Runner.warnings": [
-        "-Wall",
-        "-Wextra",
-        "-Wpedantic",
-        "-Wshadow",
-        "-Wformat=2",
-        "-Wconversion",
-        "-Wnull-dereference",
-        "-Wsign-conversion"
-    ],
-    "C_Cpp_Runner.enableWarnings": true,
-    "C_Cpp_Runner.warningsAsError": false,
-    "C_Cpp_Runner.compilerArgs": [],
-    "C_Cpp_Runner.linkerArgs": [],
-    "C_Cpp_Runner.includePaths": [],
-    "C_Cpp_Runner.includeSearch": [
-        "*",
-        "**/*"
-    ],
-    "C_Cpp_Runner.excludeSearch": [
-        "**/build",
-        "**/build/**",
-        "**/.*",
-        "**/.*/**",
-        "**/.vscode",
-        "**/.vscode/**"
-    ],
-    "C_Cpp_Runner.useAddressSanitizer": false,
-    "C_Cpp_Runner.showCompilationTime": false,
-    "cph.general.onceMaintainerMessage": false,
-    "C_Cpp_Runner.msvcWarnings": [
-        "/W4",
-        "/permissive-",
-        "/w14242",
-        "/w14287",
-        "/w14296",
-        "/w14311",
-        "/w14826",
-        "/w44062",
-        "/w44242",
-        "/w14905",
-        "/w14906",
-        "/w14263",
-        "/w44265",
-        "/w14928"
-    ],
-    "C_Cpp_Runner.useUndefinedSanitizer": false,
-    "C_Cpp_Runner.useLeakSanitizer": false,
-    "C_Cpp.inlayHints.referenceOperator.enabled": true,
-    "editor.tabSize": 4,
-    "editor.detectIndentation": false,
-    "cph.language.cpp.Args": "-std=c++17",
 }

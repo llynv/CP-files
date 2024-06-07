@@ -36,34 +36,36 @@ int32_t main() {
 
 const int INF = 0x3f3f3f3f;
 
-// bool check(int n)
-// {
-//     if (n < 2) return false;
-//     if (n < 4) return true;
-//     if (n % 2 == 0 || n % 3 == 0) return false;
-//     for (int i = 5; i*i <= n; i += 6) {
-//         if (n % i == 0 || n % (i+2) == 0) return false;
-//     }
-//     return true;
-// }
-
-bool check(int n)
+int pow (int a, int b, int m)
 {
-    // Check if n=1 or n=0
-    if (n <= 1)
-        return false;
-    // Check if n=2 or n=3
-    if (n == 2 || n == 3)
-        return true;
-    // Check whether n is divisible by 2 or 3
-    if (n % 2 == 0 || n % 3 == 0)
-        return false;
-    // Check from 5 to square root of n
-    // Iterate i by (i+6)
-    for (int i = 5; i*i <= n; i = i + 6)
-        if (n % i == 0 || n % (i + 2) == 0)
-            return false;
- 
+    int res = 1;
+    while (b) {
+        if (b & 1) res = (res * a) % m;
+        a = (a * a) % m;
+        b >>= 1;
+    }
+    return res;
+}
+
+bool check (int n)
+{
+    if (n < 2) return false;
+    if (n == 2 || n == 3) return true;
+    if (n % 2 == 0 || n % 3 == 0) return false;
+
+    int d = n - 1;
+    while (d % 2 == 0) d /= 2;
+
+    for (int a : {2, 3, 5, 7, 11, 13, 17, 19, 23}) {
+        if (a >= n) break;
+        int t = d;
+        int y = pow(a, t, n);
+        while (t != n - 1 && y != 1 && y != n - 1) {
+            y = (y * y) % n;
+            t *= 2;
+        }
+        if (y != n - 1 && t % 2 == 0) return false;
+    }
     return true;
 }
 
@@ -72,9 +74,10 @@ void solve()
     int n;
     cin >> n;
     for (int i = 2; i <= 63; ++i) {
-        int c = pow(n, 1.0/i);
-        cout << c << " ";
-        if ((int)pow(c, i) == n && check(c)) {
+        int c = ceil(pow(n, 1.0/i));
+        // cout << c << " ";
+        // dbg(i, c, pow(c, i, 1e9+7), n);
+        if (pow(c, i, 1e9 + 7) == n && check(c)) {
             cout << c << " " << i;
             return;
         }

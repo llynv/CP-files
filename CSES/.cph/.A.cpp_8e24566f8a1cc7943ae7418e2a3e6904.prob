@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\CSES\\A.cpp","tests":[{"id":1695696811523,"input":"5 8\n########\n#.A#...#\n#.##.#B#\n#......#\n########","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\CSES\\A.cpp","group":"local","local":true}

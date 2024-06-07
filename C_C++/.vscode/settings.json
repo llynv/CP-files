@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.sage": "python",
+        "atomic": "cpp",
+        "deque": "cpp",
+        "ios": "cpp",
+        "list": "cpp",
+        "system_error": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xiosbase": "cpp",
+        "xstring": "cpp",
+        "xtree": "cpp",
+        "cstddef": "cpp",
+        "iostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

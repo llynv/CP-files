@@ -39,7 +39,7 @@ const int N = 10011;
 
 vector<int> adj[N];
 int numb[N], low[N], bridges, joints, vs[N], vertexOrder, check[N];
-s
+
 void dfs(int u, int father)
 {
     vertexOrder++;
@@ -59,9 +59,11 @@ void dfs(int u, int father)
             // cout << u << " " << v << " " << father << " " << numbChild << "\n";
             bridges += (numb[v] == low[v]);
             // if (numb[v] == low[v]) cout << v << "\n";
-            if (father == -1 && numbChild > 1) check[u] = true;
-            else if (father != -1 && low[v] >= numb[u]) check[u] = true;
+            dbg(u, v, father, numbChild);
         }
+    }
+    if (numb[u] == low[u] && numbChild > 1) {
+        check[u] = true;
     }
 }
 
@@ -83,8 +85,9 @@ void solve()
     }
 
     for (int i = 1; i <= n; ++i) {
-        joints += (check[i]);
-        // if (check[i]) cout << i << "\n";
+        // joints += (check[i]);
+
+        if (check[i]) cout << i << "\n";
         // cout << i << " {" << numb[i] << ", " << low[i] << "}\n"; 
     }
 

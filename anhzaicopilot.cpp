@@ -46,71 +46,65 @@ int32_t main() {
 }
 
 const int INF = 0x3f3f3f3f;
-const int N = 1e5 + 7;
+const int N = 1e6 + 7;
 
-void printFind(vector<int> res, vector<int> a)
+int f[N];
+
+struct PS {
+    int x, y;
+
+    void RESET() {
+        int _gcd = gcd(x, y);
+        x /= _gcd;
+        y /= _gcd;
+    }
+};
+
+void sieve ()
 {
-    int cnt = 0;
-    for (int i = 0; i < a.size(); ++i) {
-        if (res.empty()) return;
-    
-        auto pos = lower_bound(all(res), a[i]);
-        // cout << res[pos-res.begin()] << " " << i << "\n";
-        if (pos != res.end() && res[pos-res.begin()] == a[i]) {
-            cout << i+1 << " ";
-            res.erase(pos);
+    f[0] = 1;
+    for (int i = 1; i < N; ++i) {
+        if (i % 2 != 0) {
+            f[i] = f[i / 2];
+        } else {
+            f[i] = f[i / 2] + f[i / 2 - 1];
         }
     }
+    // vector<ii> a(N);
+    // for (int i = 0; i < N - 1; ++i) {
+    //     PS p = PS{f[i], f[i+1]};
+    //     p.RESET();
+    //     a[i] = ii{p.x, p.y};
+    // }
 }
 
 void solve()
 {
-    int n, x;
-    cin >> n >> x;
-    vector<int> a(n);
-    for (auto &c : a) cin >> c;
-
-    vector<int> b = a;
-
-    sort(all(a));
-
-    map<int, bool> mp;
-    rep (i, 0, n) {
-        rep (j, i + 1, n) {
-            mp[a[i] + a[j]] = 1;
-        }
-    }
-    int i = 0;
-    while (i < n) {
-        int j = n - 1;
-        while (j > i) {
-            int sum = a[i] + a[j];
-            if (mp[x - sum]) {
-                int l = i + 1, r = j - 1;
-                int target = x - sum;
-                while (l < r)
-                {
-                    if (a[l] + a[r] == target) {
-                        // cout << a[i] << " " << a[j] << " " << a[l] << " " << a[r];
-
-                        vector<int> stg = {a[i], a[l], a[r], a[j]};
-                        // dbg(stg);
-                        // dbg(b);
-                        printFind(stg, b);
-
-                        return;
-                    }
-
-                    if (a[l] + a[r] < target) {
-                        l++;
-                    } else {
-                        r--;
+    string a, b;
+    cin >> a >> b;
+    map<string, int> m;
+    string str = "";
+    for (int i = 1; i <= min(sz(a), sz(b)); ++i) {
+        if (sz(a) % i == 0 && sz(b) % i == 0) {
+            string s = a.substr(0, i);
+            for (int j = 0; j < sz(a); j += i) {
+                if (a.substr(j, i) != s) {
+                    s = "";
+                    break;
+                }
+            }
+            if (s != "") {
+                for (int j = 0; j < sz(b); j += i) {
+                    if (b.substr(j, i) != s) {
+                        s = "";
+                        break;
                     }
                 }
             }
-            j = lower_bound(all(a), a[j])-a.begin()-1;
+            if (s != "") {
+                str = s;
+            }
         }
-        i = upper_bound(all(a), a[i])-a.begin();
     }
-    cout << "IMPOSSIBLE";
+    cout << (str != "" ? str : "NOT FOUND");
 }

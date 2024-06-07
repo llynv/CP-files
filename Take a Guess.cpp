@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
+#define int long long
 using namespace std;
 
 void solve();
 
-int main() {
+int32_t main() {
     // ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
     // int t;
     // cin >> t;
@@ -17,42 +18,41 @@ int main() {
 void solve()
 {
     int n, k;
-    scanf("%d%d", &n, &k);
-    vector<int> a(n);
-    int s[3][3];
-    for (int i = 0; i < 3; ++i) for (int j = 0; j < 3; ++j) s[i][j] = 0;
+    scanf("%lld%lld", &n, &k);
+    vector<int> a(n+1);
+    int s[4][4] = {0};
     int fsum = 0;
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 1; i <= 3; ++i) {
         int x, y;
         // cout << "and " << i << " " <<  << "\n";
-        printf("and %d %d\n", i, (i + 1 == 3 ? 0 : i + 1));
+        printf("and %lld %lld\n", i, i % 3 + 1);
         fflush(stdout);
-        scanf("%d", &x);
-        printf("or %d %d\n", i, (i + 1 == 3 ? 0 : i + 1));
+        scanf("%lld", &x);
+        printf("or %lld %lld\n", i, i % 3 + 1);
         fflush(stdout);
-        scanf("%d", &y);
-        s[i][(i + 1 == 3 ? 0 : i + 1)] = x + y;
+        scanf("%lld", &y);
+
+        s[i][i % 3 + 1] = x + y;
         fsum += x + y;
     }
     fsum /= 2;
-    a[0] = fsum - s[1][2];
-    a[1] = fsum - s[2][0];
-    a[2] = fsum - s[0][1];
-    for (int i = 3; i < n; ++i) {
-        int x, y;
+    a[1] = fsum - s[2][3];
+    a[2] = fsum - s[3][1];
+    a[3] = fsum - s[1][2];
+    for (int i = 4; i <= n; ++i) {
+        int x = 0, y = 0;
         // cout << "and " << i << " " << (i + 1 == n ? 0 : i + 1) << "\n";
-        printf("and %d %d\n", i-1, i);
+        printf("and %lld %lld\n", i-1, i);
         fflush(stdout);
-        scanf("%d", &x);
+        scanf("%lld", &x);
         // cout << "or " << i << " " << aft << "\n";
-        printf("or %d %d\n", i-1, i);
+        printf("or %lld %lld\n", i-1, i);
         fflush(stdout);
-        scanf("%d", &y);
+        scanf("%lld", &y);
         fsum = x + y;
-        printf("sum : %d %d\n", x, y);
-        a[i] = x + y - a[i-1];
+        a[i] = fsum - a[i-1];
     }
     sort(a.begin(), a.end());
-    printf("finish %d\n", a[k-1]);
+    printf("finish %lld\n", a[k]);
     fflush(stdout);
 }

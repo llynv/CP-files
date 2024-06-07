@@ -1,0 +1,1 @@
+{"name":"Local: Regional_C","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\Regional_C.cpp","tests":[{"id":1702117335837,"input":"1\n6\n0 1\n-1 0\n-1 -1\n2 1\n2 0\n1 -1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\Regional_C.cpp","group":"local","local":true}

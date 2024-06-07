@@ -1,0 +1,9 @@
+Asilah,Rhubarb,1.01
+Sidi_Slimane,Squash_Blossom,1.02
+Settat,Parsley,1.04
+Settat,Cherry,1.07
+Midelt,Sage,1.11
+Ifrane,Cranberry,1.23
+Sidi_Kacem,Asparagus,1.02
+Ksar_es_Seghir,Cantaloupe,1.06
+Bir_Lehlou,Sweet_Potato,1.10
