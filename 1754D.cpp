@@ -41,7 +41,7 @@ template<class T> T cube(T x) { return x * x * x; }
 
 void solve();
 
-#define LOCAL
+// #define LOCAL
 
 int32_t main() {
 
@@ -79,6 +79,13 @@ void solve()
             cnt[i-1] %= i;
         }
     }
+    for (int i = 1; i <= n; ++i) {
+        if (a[i] >= i) {
+            a[i] /= i;
+            a[i] = i * a[i];
+        }
+    }
+    dbg(a);
     bool isOk = true;
     for (int i = 0; i < x; ++i) {
         if (cnt[i] != 0) {

@@ -14,23 +14,23 @@ int32_t main() {
     return 0;
 }
 
-const ll INF = 0x3f3f3f3f3f;
+const int INF = 0x3f3f3f3f3f;
 const int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 void solve()
 {
     int x, y, z;
     cin >> x >> y >> z;
-    ll pday = (x * 10LL + y * 12LL + z * 5LL);
-    ll total = pday * 31LL * 2000LL;
+    int pday = (x * 10LL + y * 12LL + z * 5LL);
+    int total = pday * 31LL * 2000LL;
     cout << total << "\n";
     for (int i = 1; i <= 12; ++i) {
         cout << pday * days[i] * 2000LL << " ";
     }
     cout << "\n";
     int X = 300, Y = 500, Z = 700;
-    ll elt = (X * 10LL + Y * 12LL + Z * 5LL);
-    ll volumn = elt * 31, bill = 0;
+    int elt = (X * 10LL + Y * 12LL + Z * 5LL);
+    int volumn = elt * 31, bill = 0;
     if (volumn <= 50) {
         bill = volumn * 2000LL;
     }

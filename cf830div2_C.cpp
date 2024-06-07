@@ -17,11 +17,11 @@ using namespace std;
 #define heapMax priority_queue<int>
 #define heapMin priority_queue<int, vector<int>, greater<int>>
 
-string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
-string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
+string to_upper(string a) { for (int i = 0;i < (int)a.size();++i) if (a[i] >= 'a' && a[i] <= 'z') a[i] -= 'a' - 'A'; return a; }
+string to_lower(string a) { for (int i = 0;i < (int)a.size();++i) if (a[i] >= 'A' && a[i] <= 'Z') a[i] += 'a' - 'A'; return a; }
 
-template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
-template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }
+template<typename A, typename B> ostream& operator<<(ostream& os, const pair<A, B>& p) { return os << '(' << p.first << ", " << p.second << ')'; }
+template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream& os, const T_container& v) { os << '{'; string sep; for (const T& x : v) os << sep << x, sep = ", "; return os << '}'; }
 void dbg_out() { cerr << endl; }
 template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
 #ifdef LINVG
@@ -42,22 +42,22 @@ void solve();
 
 int32_t main() {
 
-    #ifdef LOCAL
-        freopen("input.txt", "r", stdin);
-        freopen("output.txt", "w", stdout);
-    #endif
+#ifdef LOCAL
+   freopen("input.txt", "r", stdin);
+   freopen("output.txt", "w", stdout);
+#endif
 
-    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+   ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 
-    time_t start = clock();
+   time_t start = clock();
 
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+   int t;
+   cin >> t;
+   while (t--)
+      solve();
 
-    cerr << "Time elapsed: " << (double)(clock() - start) / CLOCKS_PER_SEC << "s.\n";
-    return 0;
+   cerr << "Time elapsed: " << (double)(clock() - start) / CLOCKS_PER_SEC << "s.\n";
+   return 0;
 }
 
 const int INF = 0x3f3f3f3f3f;
@@ -65,70 +65,70 @@ const int INF = 0x3f3f3f3f3f;
 
 void solve()
 {
-    int n, q;
-    cin >> n >> q;
-    vector<int> a(n);
-    for (auto &x : a) cin >> x;
-    int l, r;
-    cin >> l >> r;
+   int n, q;
+   cin >> n >> q;
+   vector<int> a(n);
+   for (auto& x : a) cin >> x;
+   int l, r;
+   cin >> l >> r;
 
-    int initSum = 0, initXor = 0;
-    for (int i = l-1; i < r; ++i) {
-        initSum += a[i];
-        initXor ^= a[i];
-    }
+   int initSum = 0, initXor = 0;
+   for (int i = l - 1; i < r; ++i) {
+      initSum += a[i];
+      initXor ^= a[i];
+   }
 
-    int res = 0, lf = 0, rt = n-1;
+   int res = 0, lf = 0, rt = n - 1;
 
-    l = 0;
-    int sum = 0, xorSum = 0;
+   l = 0;
+   int sum = 0, xorSum = 0;
 
-    for (int i = 0; i < n; ++i)
-    {
-        // dbg(l, i, sum, xorSum);
-        if (sum + a[i] - (xorSum ^ a[i]) != initSum - initXor) {
-            sum += a[i];
-            xorSum ^= a[i];
-            continue;
-        }
+   for (int i = 0; i < n; ++i)
+   {
+      // dbg(l, i, sum, xorSum);
+      if (sum + a[i] - (xorSum ^ a[i]) != initSum - initXor) {
+         sum += a[i];
+         xorSum ^= a[i];
+         continue;
+      }
 
-        sum += a[i];
-        xorSum ^= a[i];
+      sum += a[i];
+      xorSum ^= a[i];
 
-        bool ok = false;
-        while (l < i) {
-            if (sum - a[l] - (xorSum ^ a[l]) == initSum - initXor) {
-                sum -= a[l];
-                xorSum ^= a[l];
-                ok = true;
-                ++l;
-                continue;
-            }
-            break;
-        }
-
-
-        dbg (l, i, sum, xorSum);
-        if (i - l < rt - lf) {
-            lf = l;
-            rt = i;
-        }
-    }
-
-    while (l < n - 1) {
-        if (sum - a[l] - (xorSum ^ a[l]) == initSum - initXor) {
+      bool ok = false;
+      while (l < i) {
+         if (sum - a[l] - (xorSum ^ a[l]) == initSum - initXor) {
             sum -= a[l];
             xorSum ^= a[l];
+            ok = true;
             ++l;
             continue;
-        }
-        break;
-    }
+         }
+         break;
+      }
 
-    if (n - l - 1 < rt - lf) {
-        lf = l;
-        rt = n-1;
-    }
 
-    cout << lf+1 << " " << rt+1 << endl;
+      dbg(l, i, sum, xorSum);
+      if (i - l < rt - lf) {
+         lf = l;
+         rt = i;
+      }
+   }
+
+   while (l < n - 1) {
+      if (sum - a[l] - (xorSum ^ a[l]) == initSum - initXor) {
+         sum -= a[l];
+         xorSum ^= a[l];
+         ++l;
+         continue;
+      }
+      break;
+   }
+
+   if (n - l - 1 < rt - lf) {
+      lf = l;
+      rt = n - 1;
+   }
+
+   cout << lf + 1 << " " << rt + 1 << endl;
 }

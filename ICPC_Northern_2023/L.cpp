@@ -3,15 +3,15 @@
 #define fu(i,a,b) for(ll i = a; i <= b; i++)
 #define fd(i,a,b) for(ll i = a; i >= b; i--)
 using namespace std;
-const ll MAX_PRIME = 5e6 + 7;
-const ll MOD = 998244353;
+const int MAX_PRIME = 5e6 + 7;
+const int MOD = 998244353;
 
-ll a, b;
+int a, b;
 
-ll spf[MAX_PRIME];
+int spf[MAX_PRIME];
 bool ob[MAX_PRIME];
 
-void prepare_spf(ll maxVal)
+void prepare_spf(int maxVal)
 {
     fu(i, 1, maxVal)
     spf[i] = i;
@@ -27,12 +27,12 @@ void prepare_spf(ll maxVal)
 }
 
 
-ll cal(ll x)
+int cal(int x)
 {
-    ll ans = x;
+    int ans = x;
     while(x != 1)
     {
-        ll p = spf[x];
+        int p = spf[x];
         if(ob[p] == false)
             ans -= ans / p;
         while(x % p == 0)
@@ -43,12 +43,12 @@ ll cal(ll x)
 
 void solve()
 {
-    ll sum = 0;
-    ll ans_a = a;
-    ll x = a;
+    int sum = 0;
+    int ans_a = a;
+    int x = a;
     while(x != 1)
     {
-        ll p = spf[x];
+        int p = spf[x];
         if(ob[p] == false)
         {
             ans_a -= ans_a / p;
@@ -61,7 +61,7 @@ void solve()
 
     fu(i, 2, b)
     {
-        ll ans_ai = cal(i);
+        int ans_ai = cal(i);
         sum = (sum + (ans_ai * ans_a) % MOD) % MOD;
     }
     cout << sum;

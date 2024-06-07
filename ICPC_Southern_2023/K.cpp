@@ -3,9 +3,9 @@
 #define fu(i,a,b) for(ll i = a; i <= b; i++)
 #define fd(i,a,b) for(ll i = a; i >= b; i--)
 using namespace std;
-const ll MAX = 1e6 + 7;
+const int MAX = 1e6 + 7;
 
-ll a[MAX], n;
+int a[MAX], n;
 
 void enter()
 {
@@ -14,9 +14,9 @@ void enter()
         cin >> a[i];
 }
 
-ll pre[MAX], aft[MAX];
+int pre[MAX], aft[MAX];
 
-bool isGood(ll h)
+bool isGood(int h)
 {
     pre[1] = 1;
     fu(i, 2, n)
@@ -54,11 +54,11 @@ bool isGood(ll h)
 
 void solve()
 {
-    ll l = 1, r = n;
-    ll res = 1;
+    int l = 1, r = n;
+    int res = 1;
     while(l <= r)
     {
-        ll mid = (l + r) / 2;
+        int mid = (l + r) / 2;
         if(isGood(mid))
         {
             res = max(res, mid);

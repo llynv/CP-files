@@ -9,16 +9,16 @@
 #define fastio ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define IOFile(in,out) freopen(in, "r", stdin); freopen(out, "w", stdout);
 using namespace std;
-const ll maxN = 2e5 + 0307;
-const ll MOD = 1e9 + 7;
+const int maxN = 2e5 + 0307;
+const int MOD = 1e9 + 7;
 void solve()
 {
     string s;
-    ll l = 1 ;
-    ll r = 1000000;
+    int l = 1 ;
+    int r = 1000000;
     while(l!=r)
     {
-        ll mid =(l+r+1)/2;
+        int mid =(l+r+1)/2;
         cout<<mid;
         cout.flush();
         cin>>s;
@@ -40,7 +40,7 @@ int main()
 {
 //    IOFile("test.inp","test.out");
     fastio
-    ll numTest = 1;
+    int numTest = 1;
     while(numTest--)
     {
         solve();

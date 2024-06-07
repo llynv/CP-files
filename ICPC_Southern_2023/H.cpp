@@ -4,9 +4,9 @@
 #define fd(i,a,b) for(ll i = a; i >= b; i--)
 #define pii pair<ll, ll>
 using namespace std;
-const ll MAX = 1e6 + 7;
+const int MAX = 1e6 + 7;
 
-ll d, nd, m, nm;
+int d, nd, m, nm;
 
 void enter()
 {
@@ -21,14 +21,14 @@ void solve()
         return;
     }
 
-    ll k = m / d;
-    ll res = -1;
+    int k = m / d;
+    int res = -1;
 
     fu(i, 1, sqrt(k))
     {
         if(k % i == 0)
         {
-            ll tmp = i * d;
+            int tmp = i * d;
             if(tmp % nd != 0 && nm % tmp != 0)
             {
                 if(res == -1)

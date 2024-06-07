@@ -3,7 +3,7 @@
 #define fu(i,a,b) for(ll i = a; i <= b; i++)
 #define fd(i,a,b) for(ll i = a; i >= b; i--)
 using namespace std;
-const ll MAX = 1e6 + 7;
+const int MAX = 1e6 + 7;
 
 const string li[] = {"Welcome", "Hue", "University", "of", "Sciences"};
 

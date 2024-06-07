@@ -5,9 +5,12 @@ def u (i, m):
 n = int(input())
 lo = 1
 hi = 10**12
+
 while lo <= hi:
     mid = (lo + hi) // 2
     cnt = 0
+    
+
     for i in range(2, 10001):
         l = 0
         r = mid

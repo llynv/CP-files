@@ -1,69 +1,106 @@
-#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
-#pragma GCC optimize("O3", "unroll-loops")
 
 #include <bits/stdc++.h>
+#pragma GCC optimize("O3")
+#define int long long
+#define fu(i, a, b) for (int i = a; i <= b; i++)
+#define fd(i, a, b) for (int i = a; i >= b; i--)
+#define pii pair<int, int>
+#define pll pair<ll, ll>
+#define ff first
+#define ss second
 using namespace std;
 
-#define LINVG
-#define int long long
-#define ii pair<int, int>
-#define fi first
-#define se second
-#define pb push_back
-#define all(x) (x).begin(), (x).end()
-#define sz(x) ((int)(x).size())
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define per(i, a, b) for (int i = (b)-1; i >= (a); --i)
-#define trav(a, x) for (auto &a : x)
-#define endl "\n"
-#define fill(x, y) memset(x, y, sizeof(x))
-#define heapMax priority_queue<int>
-#define heapMin priority_queue<int, vector<int>, greater<int>>
+struct Node {
+   int mx, mx2;
+   int mi, mi2;
+   Node(int _mx = LONG_LONG_MIN, int _mx2 = LONG_LONG_MIN, int _mi = LONG_LONG_MAX, int _mi2 = LONG_LONG_MAX) {
+      mx = _mx;
+      mx2 = _mx2;
+      mi = _mi;
+      mi2 = _mi2;
+   }
+};
+struct SegmentTree {
+   int n;
+   vector<Node> nodes;
 
-string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
-string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
+   SegmentTree(int _n) {
+      n = _n;
+      nodes.assign(4 * n, Node());
+   }
 
-template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
-template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }
-template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator>>(ostream &is, const T_container &v) { for (auto &c : v) is >> c; }
-void dbg_out() { cerr << endl; }
-template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
-#ifdef LINVG
-#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
-#else
-#define dbg(...)
-#endif
+   void build(int id, int l, int r, vector<int>& inp) {
+      if (l == r) {
+         nodes[id] = Node(inp[l], LONG_LONG_MIN, inp[l], LONG_LONG_MAX);
+         return;
+      }
+      int mid = (l + r) / 2;
+      build(id * 2, l, mid, inp);
+      build(id * 2 + 1, mid + 1, r, inp);
+      nodes[id] = merge(nodes[id * 2], nodes[id * 2 + 1]);
+   }
 
-template<class T> T gcd(T a, T b) { T r; while (b != 0) { r = a % b; a = b; b = r; } return a; }
-template<class T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
-template<class T> T sqr(T x) { return x * x; }
-template<class T> T cube(T x) { return x * x * x; }
+   Node merge(Node& lef, Node& rig) {
+      Node res;
+      res.mx = max(lef.mx, rig.mx);
+      res.mx2 = (lef.mx == rig.mx) ? rig.mx : max({ min(lef.mx, rig.mx), lef.mx2, rig.mx2 });
+      res.mi = min(lef.mi, rig.mi);
+      res.mi2 = (lef.mi == rig.mi) ? rig.mi : min({ max(lef.mi, rig.mi), lef.mi2, rig.mi2 });
+      return res;
+   }
 
-
-void solve();
-
-int32_t main() {
-
-    #ifdef LOCAL
-        freopen("input.txt", "r", stdin);
-        // freopen("output.txt", "w", stdout);
-    #endif
-
-    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
-    // int t;
-    // cin >> t;
-    // while (t--)
-        solve();
-    return 0;
+   // void show(int id, int l, int r) {
+   //     cout << id << " " << l << " " << r << " " << nodes[id].mx << " " << nodes[id].mx2 << " " << nodes[id].mi << " " << nodes[id].mi2 << "\n";
+   //     if (l == r)
+   //         return;
+   //     int mid = (l + r) / 2;
+   //     show(id * 2, l, mid);
+   //     show(id * 2 + 1, mid + 1, r);
+   // }
+   Node getNode(int id, int l, int r, int u, int v) {
+      if (v < l || r < u) return Node();
+      if (u <= l && r <= v) return nodes[id];
+      int mid = (l + r) / 2;
+      Node left = getNode(id * 2, l, mid, u, v);
+      Node right = getNode(id * 2 + 1, mid + 1, r, u, v);
+      return merge(left, right);
+   }
+};
+void solve() {
+   int n, q;
+   cin >> n >> q;
+   vector<int> a(n + 1);
+   fu(i, 1, n) cin >> a[i];
+   SegmentTree st(n);
+   st.build(1, 1, n, a);
+   // st.show(1, 1, n);
+   // cout << "\n";
+   // Node node = st.getNode(1, 1, n, 2, 7);
+   // cout << node.mx << " " << node.mx2 << " " << node.mi << " " << node.mi2 << "\n";
+   fu(i, 1, q) {
+      int l, r;
+      cin >> l >> r;
+      Node node = st.getNode(1, 1, n, l + 1, r - 1);
+      int res = a[l] * a[r];
+      int mul1 = node.mx * node.mx2 * res;
+      int mul2 = node.mi * node.mi2 * res;
+      int mul3 = node.mx * node.mi * res;
+      cout << max({ mul1, mul2, mul3 }) << "\n";
+   }
 }
-
-const int INF = 0x3f3f3f3f3f;
-
-void solve()
-{
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (auto &c : a) cin >> c;
-    int res = 0;
+int32_t main() {
+   
+   // freopen("input.txt", "r", stdin);
+   // freopen("output.txt", "w", stdout);
+ 
+   ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+   int t;
+   t = 1;
+   auto start = chrono::steady_clock::now();
+   while (t-- > 0) {
+      solve();
+   }
+   auto end = chrono::steady_clock::now();
+   auto diff = end - start;
+   // cerr << "Time elapsed: " << chrono::duration<double, milli>(diff).count() << " ms\n";
 }

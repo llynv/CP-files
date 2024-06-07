@@ -2,16 +2,16 @@
 #define ll long long
 #define loop_up(i,a,b) for( ll i = a ; i <= b ; i ++ )
 using namespace std;
-const ll maxN = 1e6 ;
-vector<ll>save;
-map<ll,ll>valid;
+const int maxN = 1e6 ;
+vector<int>save;
+map<int,int>valid;
 int main()
 {
-    ll n,k;
+    int n,k;
     cin>>n>>k;
-    ll check = 0;
-    ll num2 = 0, num3 = 0 ;
-    for ( ll i = 2 ; i*i <= n ; i ++ )
+    int check = 0;
+    int num2 = 0, num3 = 0 ;
+    for ( int i = 2 ; i*i <= n ; i ++ )
     {
         if(n%i==0)
         {
@@ -55,20 +55,20 @@ int main()
         cout<<-1;
         return 0;
     }
-    for( ll i = 1 ; i <= num2/3 ; i ++ )
+    for( int i = 1 ; i <= num2/3 ; i ++ )
     {
-        save.push_back((ll)8);
+        save.push_back((int)8);
     }
-    for( ll i = 1 ; i <= num3/2 ; i ++ )
+    for( int i = 1 ; i <= num3/2 ; i ++ )
     {
-        save.push_back((ll)9);
+        save.push_back((int)9);
     }
-    ll tich = 1 ;
-    for( ll i = 1 ; i <= num2%3 ; i ++ )
+    int tich = 1 ;
+    for( int i = 1 ; i <= num2%3 ; i ++ )
     {
         tich*=2;
     }
-    for( ll i = 1 ; i <= num3%2 ; i ++ )
+    for( int i = 1 ; i <= num3%2 ; i ++ )
     {
         tich*=3;
     }
@@ -82,13 +82,13 @@ int main()
         save.push_back(tich);
     }
     sort(save.begin(),save.end());
-    if((ll)save.size()<=k)
+    if((int)save.size()<=k)
     {
-        for( ll i = 1 ; i <= k - (ll)save.size() ; i ++ )
+        for( int i = 1 ; i <= k - (int)save.size() ; i ++ )
         {
             cout<<1;
         }
-        for( ll i = 0 ; i < (ll)save.size() ; i ++ )
+        for( int i = 0 ; i < (int)save.size() ; i ++ )
         {
             cout<<save[i];
         }

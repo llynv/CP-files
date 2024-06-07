@@ -115,7 +115,6 @@ void solve()
 
     if (cntA != cntB) return void(cout << "NO\n");
     
-
     bool isDif = false;
     int start = -1, currentPos = 0;
     bool isInc = true;

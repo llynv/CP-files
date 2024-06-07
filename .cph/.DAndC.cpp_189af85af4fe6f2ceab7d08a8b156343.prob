@@ -1,0 +1,1 @@
+{"name":"Local: DAndC","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\DAndC.cpp","tests":[{"id":1706189946618,"input":"5\n2 1 1 3 2","output":""},{"id":1706190363384,"input":"4\n3 1 5 8","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\DAndC.cpp","group":"local","local":true}

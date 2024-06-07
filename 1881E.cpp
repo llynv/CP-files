@@ -1,5 +1,4 @@
-#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
-#pragma GCC optimize("O3", "unroll-loops")
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -65,17 +64,16 @@ void solve()
     cin >> n;
     vector<int> a(n);
     for (auto &c : a) cin >> c;
-    vector<int> dp(n+1, INF);
-
-    dp[0] = 0;
-
+    vector<int> dp(n+1, 0);
+    vector<int> ending(n+1, 0);
+    ending[0] = 0;
+    int res = INF;
     for (int i = 1; i <= n; ++i) {
-        if (a[i-1] + i > n) continue;
-
-        for (int j = i-1; j > 0; --j) {
-            if (a[j-1] + j >= i) continue;
-
-            dp[i] = min(dp[i], dp[j] + 1);    
+        ending[i] = max(ending[i], ending[i-1]);
+        if (a[i-1] + i <= n) {
+            dp[i] = max(ending[i-1] + a[i-1] + 1, dp[i]);
+            ending[a[i-1] + i] = max(ending[a[i-1] + i], dp[i]);
         }
     }
+    cout << n - *max_element(all(dp)) << "\n";
 }

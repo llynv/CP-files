@@ -68,7 +68,6 @@ void solve()
     int cnt = 0;
     for (int i = 0; i < sz(s); i += 2) {
         cnt += (s[i] == 'W');
-
         // dbg(s, cnt);
         if (cnt >= 3) return void (cout << "YES\n");
 

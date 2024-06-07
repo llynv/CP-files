@@ -9,20 +9,20 @@
 #define fastio ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define IOFile(in,out) freopen(in, "r", stdin); freopen(out, "w", stdout);
 using namespace std;
-const ll maxN = 1e5 + 0307;
-const ll MOD = 1e9 + 7;
-const ll N = 211;
-ll p[maxN],check[maxN];
-vector<ll>adj[maxN],save[maxN];
-ll _lcm(ll a, ll b)
+const int maxN = 1e5 + 0307;
+const int MOD = 1e9 + 7;
+const int N = 211;
+int p[maxN],check[maxN];
+vector<int>adj[maxN],save[maxN];
+int _lcm(int a, int b)
 {
     return (a * b) / __gcd(a, b);
 }
-void dfs( ll x, ll dem)
+void dfs( int x, int dem)
 {
     check[x]=1;
     save[dem].push_back(x);
-    for( ll g : adj[x])
+    for( int g : adj[x])
     {
         if(check[g]==0)
         {
@@ -32,7 +32,7 @@ void dfs( ll x, ll dem)
 }
 void solve()
 {
-    ll n;
+    int n;
     cin>>n;
     string s;
     cin>>s;
@@ -51,7 +51,7 @@ void solve()
         cin>>p[i];
         adj[i].push_back(p[i]);
     }
-    ll dem = 0 ;
+    int dem = 0 ;
     loop_up(i,1,n)
     {
         if(check[i]==0)
@@ -60,13 +60,13 @@ void solve()
             dfs(i,dem);
         }
     }
-    ll kq = 1;
-    vector<ll>ans;
+    int kq = 1;
+    vector<int>ans;
     loop_up(i,1,dem)
     {
     //    cout<<i<<"------------\n";
         set<char>tmp;
-        for( ll x : save[i])
+        for( int x : save[i])
         {
         //    cout<<x<<" ";
             bit[i][x]=1;
@@ -74,7 +74,7 @@ void solve()
         }
         if(tmp.size()!=1)
         {
-            ans.push_back((ll)save[i].size());
+            ans.push_back((int)save[i].size());
         }
     //    cout<<"\n";
     }
@@ -89,7 +89,7 @@ void solve()
         for (int i = 1; i <= dem; ++i) {
             pre &= bit[i].to_ullong();
         }
-        ll rs = 0;
+        int rs = 0;
         for (int i = 0; i < n; ++i) {
             if (pre[i]) {
                 rs = i + 1;
@@ -97,7 +97,7 @@ void solve()
             }
         }
 
-        ll res = ans[0];
+        int res = ans[0];
         loop_up(i,1,ans.size()-1)
         {
             res = _lcm(res,ans[i]);
@@ -110,7 +110,7 @@ int main()
 {
 //    IOFile("test.inp","test.out");
     fastio
-    ll numTest = 1;
+    int numTest = 1;
     cin>>numTest;
     while(numTest--)
     {

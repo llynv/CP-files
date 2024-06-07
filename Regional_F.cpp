@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
     fastio
-    ll numTest;
+    int numTest;
     cin>>numTest;
     while(numTest--)
     {
@@ -23,12 +23,12 @@ int main()
             cout<<"YES\n";
             continue;
         }
-        if((ll)s.size()!=(ll)t.size())
+        if((int)s.size()!=(int)t.size())
         {
             cout<<"NO\n";
             continue;
         }
-        for( ll i = 0 ; i < s.size() ; i ++ )
+        for( int i = 0 ; i < s.size() ; i ++ )
         {
             if(i%2==0)
             {

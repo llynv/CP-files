@@ -76,7 +76,7 @@ void solve()
             if (i == 1 && j == 1) continue;
 
             if (a[i-1][j-1] != '#') {
-                dp[i][j] =( dp[i-1][j] + dp[i][j-1]) % MOD; 
+                dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % MOD; 
             }
         }
     }

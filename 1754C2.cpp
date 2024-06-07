@@ -117,16 +117,16 @@ void solve()
     }
     vector<ii> tmp;
     sort(all(ans));
-    if (ans[0].fi > 1) tmp.push_back({1, ans[0].fi - 1});
+    if (ans[0].fi > 1) tmp.push_back({ 1, ans[0].fi - 1 });
     tmp.push_back(ans[0]);
     for (int i = 1; i < sz(ans); ++i) {
-        if (ans[i].fi > ans[i-1].se + 1) {
-               tmp.push_back({ans[i-1].se+1, ans[i].fi-1}); 
+        if (ans[i].fi > ans[i - 1].se + 1) {
+            tmp.push_back({ ans[i - 1].se + 1, ans[i].fi - 1 });
         }
         tmp.push_back(ans[i]);
     }
     sort(all(tmp));
-    if (tmp.back().se < n) tmp.push_back({tmp.back().se+1, n});
+    if (tmp.back().se < n) tmp.push_back({ tmp.back().se + 1, n });
     cout << sz(tmp) << "\n";
     for (auto& c : tmp) cout << c.fi << " " << c.se << "\n";
 }

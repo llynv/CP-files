@@ -135,4 +135,5 @@ void solve()
     cin >> n;
     get (0, 0, n);
     cout << res << endl;
+    cout << 2 * n - 4 + fpow(2, n - 2) * 4 << '\n';
 }

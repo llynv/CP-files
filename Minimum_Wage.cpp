@@ -63,5 +63,5 @@ void solve()
 {
     int n;
     cin >> n;
-    cout << (n > 11 ? "YES" : "NO");
 }
+

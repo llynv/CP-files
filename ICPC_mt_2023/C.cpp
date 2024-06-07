@@ -3,11 +3,11 @@
 #define fu(i,a,b) for(ll i = a; i <= b; i++)
 #define fd(i,a,b) for(ll i = a; i >= b; i--)
 using namespace std;
-const ll MAX = 107;
-const ll MOD = 1e9 + 7;
+const int MAX = 107;
+const int MOD = 1e9 + 7;
 
-ll n;
-ll a[MAX];
+int n;
+int a[MAX];
 
 void enter()
 {
@@ -18,9 +18,9 @@ void enter()
     }
 }
 
-ll myPow(ll x, ll k)
+int myPow(int x, int k)
 {
-    ll mul = x, res = 1;
+    int mul = x, res = 1;
     while(k > 0)
     {
         if(k % 2 == 1)
@@ -33,12 +33,12 @@ ll myPow(ll x, ll k)
     return res;
 }
 
-void countSub(ll arr[], ll n)
+void countSub(int arr[], int n)
 {
-    map<ll, ll> freq;
-    map<ll, ll> subsets;
+    map<int, int> freq;
+    map<int, int> subsets;
 
-    ll arrMax = 0;
+    int arrMax = 0;
 
     fu(i, 1, n)
     {
@@ -46,13 +46,13 @@ void countSub(ll arr[], ll n)
         freq[arr[i]]++;
     }
 
-    ll res = 0;
+    int res = 0;
     fd(i, arrMax, 1)
     {
-        ll sub = 0;
-        ll add = freq[i];
+        int sub = 0;
+        int add = freq[i];
 
-        for (ll j = 2; j*i <= arrMax; j++)
+        for (int j = 2; j*i <= arrMax; j++)
         {
             add = (add + freq[j*i]) % MOD;
 
@@ -68,7 +68,7 @@ void countSub(ll arr[], ll n)
 int main()
 {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-    ll t;
+    int t;
     cin >> t;
     while(t --> 0)
     {

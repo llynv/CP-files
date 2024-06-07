@@ -42,24 +42,6 @@ template<class T> T cube(T x) { return x * x * x; }
 
 void solve();
 
-vector<int> cnt[111];
-
-int digsum (int n)
-{
-    int sum = 0;
-    while (n > 0) {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
-void sieve() {
-    for (int i = 0; i <= 1e7; ++i) {
-        cnt[digsum(i)].push_back(i);
-    }
-}
-
 int32_t main() {
 
     #ifdef LOCAL
@@ -68,7 +50,6 @@ int32_t main() {
     #endif
 
     ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
-    sieve();
     int t;
     cin >> t;
     while (t--)
@@ -82,42 +63,13 @@ void solve()
 {
     int n;
     cin >> n;
-    int _max = n;
-    n = digsum(n);
-    // dbg(n);
-    int res = 0;
-    for (int i = 0; i <= n; ++i) {
-        for (int j = 0; j+i <= n; ++j) {
-            int lft = n-i-j;
-            
-            int pi = lower_bound(all(cnt[i]), _max) - cnt[i].begin();   
-            int pj = lower_bound(all(cnt[j]), _max) - cnt[j].begin();
-            int plft = lower_bound(all(cnt[lft]), _max) - cnt[lft].begin();
-
-            if (i == j && j == lft) {
-                res += (pi * (pi-1) * (pi-2)) / 6;
-                continue;
-            }
-
-            if (i == j) {
-                res += (pi * (pi-1) * pj) / 2;
-                continue;
-            }
-
-            if (j == lft) {
-                res += (pj * (pj-1) * pi) / 2;
-                continue;
-            }
-
-            if (i == lft) {
-                res += (pi * (pi-1) * pj) / 2;
-                continue;
-            }
-
-            dbg(i, j, lft, pi, pj, plft);
-            res += (pi * pj * plft);
-        }
+    int res = 1;
+    while (n > 0) {
+        int x = n % 10;
+        n /= 10;
+        int cnt = 0;
+        for (int i = 0; i <= x; ++i) for (int j = 0; j <= x; ++j) cnt += (x-i-j >= 0);
+        res *= cnt;
     }
-    dbg("end");
-    cout << res << "\n";
+    cout << res << endl;
 }

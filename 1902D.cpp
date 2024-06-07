@@ -117,49 +117,6 @@ void solve()
             cout << "YES\n";
             continue;
         }
-        int lRev = n - l + 1;
-        int rRev = n - r + 1;
-        int i = 0;
-        while (i < prePosX[x].size() && prePosX[x][i] < l) {
-            // dbg(i, prePosX[x][i], preY[prePosX[x][i]]);
-            if (preY[prePosX[x][i]] == y) {
-                cout << "YES\n";
-                dbg(i, prePosX[x][i], preY[prePosX[x][i]]);
-                goto ok;
-            }
-            ++i;
-        }
-
-        i = lower_bound(all(prePosX[x]), r) - prePosX[x].begin();
-        dbg(x, y, prePosX[x]);
-        while (i < prePosX[x].size()) {
-            dbg(i, prePosX[x][i], preY[prePosX[x][i]]);
-            if (preY[prePosX[x][i]] == y) {
-                cout << "YES\n";
-                goto ok;
-            }
-            ++i;
-        }
-
-        i = lower_bound(all(sufPosX[x-preX[l-1]]), l, cmp) - sufPosX[x-preX[l-1]].begin();
-        // dbg(prePosX[x-preX[l-1]]);
-        dbg(x - preX[l-1], x, sufPosX[x-preX[l-1]]);
-        while (i < sufPosX[x-preX[l-1]].size() && sufPosX[x-preX[l-1]][i] <= r) {
-            // dbg(i, sufPosX[x+preX[lRev-1]][i], sufY[sufPosX[x+preX[lRev-1]][i]]);
-            int pos = sufPosX[x-preX[l-1]][i];
-
-            int totalY = sufY[pos] - sufY[r+1] + preY[l-1];
-
-            dbg (i, x, totalY);
-
-            if (sufY[pos] - sufY[r+1] + preY[l-1] == y) {
-                cout << "YES\n";
-                goto ok;
-            }
-            ++i;
-        }
         
-        cout << "NO\n";
-        ok:;
     }
 }

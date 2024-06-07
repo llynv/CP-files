@@ -4,15 +4,15 @@
 #define fd(i,a,b) for(ll i = a; i >= b; i--)
 #define pll pair<ll, ll>
 using namespace std;
-const ll MAX = 1e6 + 7;
+const int MAX = 1e6 + 7;
 
-ll n, k;
-ll cnt;
+int n, k;
+int cnt;
 
 struct Point
 {
-    ll x, y, z;
-    Point(ll _x = 0, ll _y = 0, ll _z = 0)
+    int x, y, z;
+    Point(int _x = 0, int _y = 0, int _z = 0)
     {
         x = _x, y = _y, z = _z;
     }
@@ -59,7 +59,7 @@ void enter()
     cin >> n >> k;
     fu(i, 1, k)
     {
-        ll x, y, z;
+        int x, y, z;
         cin >> x >> y >> z;
         Point a = Point(x, y, z);
         if(x == 0)
@@ -91,14 +91,14 @@ void prepare(vector<Point>& a, vector<Point>& b)
     }
 }
 
-bool check(ll x, ll y)
+bool check(int x, int y)
 {
     return x == y;
 }
 
 void solve()
 {
-    ll res = 0;
+    int res = 0;
     res += n * k;
     prepare(one, two);
     prepare(two, three);
