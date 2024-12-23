@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="CP">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ac-library.zip!/" />
+      <root url="jar://$PROJECT_DIR$/public.zip!/" />
+      <root url="jar://$PROJECT_DIR$/walk_the_line_input.zip!/" />
+      <root url="jar://$PROJECT_DIR$/C_C.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

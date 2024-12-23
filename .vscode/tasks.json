@@ -9,9 +9,9 @@
             "-g",
             "${file}",
             "-o",
-            "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "template",
             "&",
-            "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            "template", 
         ],
         "options": {
           "cwd": "${fileDirname}"

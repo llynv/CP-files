@@ -1,0 +1,1 @@
+{"name":"Local: icpc_f","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\icpc_f.cpp","tests":[{"id":1730191299701,"input":"1\n3\n0 1\n1 0\n-1 0\n4\n1 -1 0\n1 0 3\n0 1 0\n1 0 -1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\icpc_f.cpp","group":"local","local":true}

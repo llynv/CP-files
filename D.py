@@ -1,22 +1,30 @@
-n, k = map(int, input().split())
-
-# dp[i][0] += dp[i-1][j] (j : 1 -> k-1)
-
-# dp[i][j] += dp[i-1][j] (j : 0 -> k-1)
-
-if (n == 1) :
-   print(k)
-
-else:
-
-   dp = [[0] * 2 for _ in range(n+1)]
-
-   dp[1][1] = 1
-
-   for i in range(2, n+1):
-      ssum = 0
-      dp[i][0] += dp[i-1][1] * (k-1)
-      dp[i][1] += dp[i-1][0] + dp[i-1][1] * (k-1)
+def minimize_penalty(T, test_cases):
+   results = []
+   
+   for n, S, t, v in test_cases:
+      hw = [(t[i], v[i]) for i in range(n)]
+      
+      hw.sort(key=lambda x: (x[0], -x[1]))
+      
+      # Initialize time and penalty
+      current_time = S
+      total_penalty = 0
+      
+      for time_release, penalty in hw:
+         if current_time < time_release:
+               current_time = time_release
+         total_penalty += (current_time - time_release) * penalty
+         current_time += 1 
          
+      results.append(total_penalty)
+   
+   return results
 
-   print(dp[n][0] + dp[n][1] * (k-1))
+
+T = int(input())
+for _ in range(T):
+   n, S = map(int, input().split())
+   t = list(map(int, input().split()))
+   v = list(map(int, input().split()))
+   test_cases = [(n, S, t, v)]
+   print(minimize_penalty(T, test_cases))

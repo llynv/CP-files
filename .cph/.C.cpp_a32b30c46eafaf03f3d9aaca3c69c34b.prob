@@ -1,0 +1,1 @@
+{"name":"Local: C","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\C.cpp","tests":[{"id":1717852245284,"input":"3\n1108819 1108823 1108867\n1881365963625\n","output":"9\n6\n2\n8\n5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\C.cpp","group":"local","local":true}

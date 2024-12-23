@@ -1,0 +1,1 @@
+{"name":"Local: final_b","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\final_b.cpp","tests":[{"id":1720240689944,"input":"2\n1\n4 2\n10\n1\n4 2\n01\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\final_b.cpp","group":"local","local":true}

@@ -1,19 +1,26 @@
-t = int(input())
+MOD = 10**9 + 7
 
-a = []
-dic = {}
+def solve():
+   n, k = map(int, input().split())
+   if k == 1:
+      print(n)
+      return
+   fi, se = 1, 1
+   step = 0
+   i = 3
+   n %= MOD;
+   while True:
+      fibo = fi + se
+      fibo %= k
+      if fibo == 0:
+         step = i
+         break
+      fi = se
+      se = fibo
+      i += 1
+   print((step * n) % MOD)
 
-for _ in range(t):
-   n = int(input())
-   if n not in a:
-      a.append(n)
-   dic[n] = dic.get(n, 0) + 1
-
-res = 0
-
-for x in a:
-   for i in a:
-      if (x * i) in dic:
-         res += dic[x * i] * dic[x] * dic[i]
-
-print(res)
+if __name__ == '__main__':
+   t = int(input())
+   for _ in range(t):
+      solve()

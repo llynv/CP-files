@@ -1,27 +1,19 @@
 /*
   Code by: linvg
+  Created: 09.12.2024 16:19:08
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 #define int long long
-#define ii pair<int, int>
-#define fi first
-#define se second
-#define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((int)(x).size())
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define per(i, a, b) for (int i = (b)-1; i >= (a); --i)
-#define vector2d(var, y, z, type, x) vector<vector<type>> var(y, vector<type>(z, x))
-#define vector3d(var, y, z, w, type, x) vector<vector<vector<type>>> var(y, vector<vector<type>>(z, vector<type>(w, x)))
-#define vector4d(var, y, z, w, u, type, x) vector<vector<vector<vector<type>>>> var(y, vector<vector<vector<type>>>(z, vector<vector<type>>(w, vector<type>(u, x)))
-
 string to_upper(string a) { for (int i = 0;i < (int)a.size();++i) if (a[i] >= 'a' && a[i] <= 'z') a[i] -= 'a' - 'A'; return a; }
 string to_lower(string a) { for (int i = 0;i < (int)a.size();++i) if (a[i] >= 'A' && a[i] <= 'Z') a[i] += 'a' - 'A'; return a; }
 
 template<class T> T gcd(T a, T b) { T r; while (b != 0) { r = a % b; a = b; b = r; } return a; }
+template<class T> T gcd(initializer_list<T> __l) { int a = 0; for (auto x : __l) { a = gcd(a, x); } return a; }
 template<class T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
 template<class T> T sqr(T x) { return x * x; }
 template<class T> T cube(T x) { return x * x * x; }
@@ -35,53 +27,78 @@ template<class T> T cube(T x) { return x * x * x; }
 #endif
 
 const int INF = 0x3f3f3f3f3f;
+const int MOD = 1e9 + 7;
+
+map<int, bool> isPw2;
+map<int, int> pw2;
+
+void prepare() {
+   int cur = 1;
+   isPw2[cur] = 0;
+   pw2[0] = cur;
+
+   for(int i = 1; i <= 47; i++) {
+      cur *= 2;
+      isPw2[cur] = i;
+      pw2[i] = cur;
+   }
+}
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> a(n);
-    for (auto& c : a) cin >> c;
-    int mx = *max_element(all(a));
-    vector<int> f(mx + 1, 0);
-    sort(all(a), greater<int>());
+   string s;
+   cin >> s;
+   int n = sz(s);
+   if (s[n - 1] == 'E') {
+      cout << "INVALID";
+      return;
+   }
 
-    auto digit_sum = [&](int x) {
-        int res = 0;
-        while (x) {
-            res += x % 10;
-            x /= 10;
-        }
-        return res;
-        };
 
-    for (auto c : a) {
-        f[c]++;
-    }
-
-    int x = 0;
-    for (int i = mx; i >= 0; --i) {
-        x += f[i];
-        f[i - digit_sum(i)] += f[i];
-        if (x >= k) {
-            cout << digit_sum(i) << '\n';
-            return;
-        }
-    }
-    cout << 0 << '\n';
+   for(int i = 0; i <= 47; i++) {
+      int cur_val = pw2[i];
+      bool flag = true;
+      for(int j = n - 1; j >= 0; j--) {
+         if (s[j] == 'E') {
+            cur_val *= 2;
+            if (isPw2[cur_val] && i != 0) {
+               flag = false;
+               break;
+            }
+         } else {
+            if (cur_val <= 1 || (cur_val - 1) % 3 != 0) {
+               flag = false;
+               break;
+            } else {
+               cur_val = (cur_val - 1) / 3;
+            }
+            if (cur_val <= 1) {
+               flag = false;
+               break;
+            }
+         }
+         // dbg(cur_val);
+         if (j > 0 && ((cur_val % 2 == 0 && s[j] != 'E') || (cur_val % 2 == 1 && s[j] != 'O'))) {
+            flag = false;
+            break;
+         }
+      }
+      if (flag) {
+         cout << cur_val;
+         return;
+      }
+   }
+   cout << "INVALID";
+   return;
 }
 
 
 int32_t main() {
-
-#ifdef LOCAL
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
-    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
-    // int t;
-    // cin >> t;
-    // while (t--)
-    solve();
-    return 0;
+   ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+   prepare();
+   // int t;
+   // cin >> t;
+   // while (t--)
+   solve();
+   return 0;
 }

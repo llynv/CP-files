@@ -1,0 +1,40 @@
+Đề bài: 
+a (computer) (độ dài n)
+
+
+RRRPPS
+1..3: PPP
+4..6: SSS
+RRRPPS
+PPPSSS
+k = 3
+=> win = 5 lớn nhất => k = 3 thỏa mãn
+n = độ dài của sâu a đề cho
+
+cnt[n][3] 
+cnt[i][k]: số lượng kí tự k từ 1 -> i
+['R', 'P', 'S']
+  0    1    2
+
+ans = 0
+max_k = 0
+for k: 1 -> n 
+   cur_point
+   for i: 1 -> n (step: i += k)
+      max_point
+      for c: 0 -> 2:
+         max_point = max(max_point, cnt[min(i + k, n)][c] - cnt[i - 1][c])
+         // đếm số lượng kí tự trong khoảng [i, i+k]
+      cur_point += max_point
+
+   if cur_point >= ans:
+      cur_point = ans
+      max_k = k
+
+chọn 1 số k:
+   1..k = ['R', 'P', 'S']
+   k+1..2*k = ['R', 'P', 'S']
+
+
+
+

@@ -1,0 +1,26 @@
+import sys
+
+MOD = 998244353
+
+def solve(tc):
+    print(f"Case #{tc}: ", end="")
+    W, G, L = map(int, input().split())
+    
+    ans = (2 * L + 1) * (W - G) % MOD
+    print(ans)
+
+
+def main():
+    input_file = "substantial_losses_input.txt"
+    output_file = "C.txt"
+    
+    sys.stdin = open(input_file, 'r')
+    sys.stdout = open(output_file, 'w')
+    
+    tc = int(input())  
+    for i in range(1, tc + 1):
+        solve(i)
+
+
+if __name__ == "__main__":
+    main()

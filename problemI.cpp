@@ -1,27 +1,19 @@
 /*
   Code by: linvg
+  Created: 09.12.2024 15:14:01
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 #define int long long
-#define ii pair<int, int>
-#define fi first
-#define se second
-#define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((int)(x).size())
-#define rep(i, a, b) for (int i = (a); i < (b); ++i)
-#define per(i, a, b) for (int i = (b)-1; i >= (a); --i)
-#define vector2d(var, y, z, type, x) vector<vector<type>> var(y, vector<type>(z, x))
-#define vector3d(var, y, z, w, type, x) vector<vector<vector<type>>> var(y, vector<vector<type>>(z, vector<type>(w, x)))
-#define vector4d(var, y, z, w, u, type, x) vector<vector<vector<vector<type>>>> var(y, vector<vector<vector<type>>>(z, vector<vector<type>>(w, vector<type>(u, x)))
-
 string to_upper(string a) { for (int i = 0;i < (int)a.size();++i) if (a[i] >= 'a' && a[i] <= 'z') a[i] -= 'a' - 'A'; return a; }
 string to_lower(string a) { for (int i = 0;i < (int)a.size();++i) if (a[i] >= 'A' && a[i] <= 'Z') a[i] += 'a' - 'A'; return a; }
 
 template<class T> T gcd(T a, T b) { T r; while (b != 0) { r = a % b; a = b; b = r; } return a; }
+template<class T> T gcd(initializer_list<T> __l) { int a = 0; for (auto x : __l) { a = gcd(a, x); } return a; }
 template<class T> T lcm(T a, T b) { return a / gcd(a, b) * b; }
 template<class T> T sqr(T x) { return x * x; }
 template<class T> T cube(T x) { return x * x * x; }
@@ -35,33 +27,68 @@ template<class T> T cube(T x) { return x * x * x; }
 #endif
 
 const int INF = 0x3f3f3f3f3f;
+const int MOD = 1e9 + 7;
 
 void solve()
 {
-   int n;
-   cin >> n;
-   vector<int> a(n);
-   for (auto &c : a) cin >> c;
-   int ans = 0;
-   int cnt = 0;
-   for (int i = 0; i < n; ++i) {
-      cnt += (a[i] == 1);
-      ans += (cnt + 1) / 2;
+   string s;
+   cin >> s;
+
+   vector<int> hyp;
+   int sumcheck = 0, inc = 10;
+   for (int i = 0; i < sz(s); ++i) {
+      if ((s[i] >= '0' && s[i] <= '9') || s[i] == 'X') {
+         sumcheck += (s[i] == 'X' ? 10 : (s[i] - '0')) * inc;
+         --inc;
+      } 
+      if (s[i] == '-') {
+         hyp.push_back(i);
+      }
    }
-   cout << ans << '\n';
+   if (inc) {
+      cout << "invalid\n";
+      return;
+   }
+   for (int i = 0; i < sz(s) - 1; ++i) if (s[i] == 'X') {
+      cout << "invalid\n";
+      return;
+   }
+   if (sumcheck % 11 != 0) {
+      cout << "invalid\n";
+      return;
+   }
+   for (int i = 1; i < sz(s); ++i) if (s[i] == s[i - 1] && s[i] == '-') {
+      cout << "invalid\n";
+      return;
+   }
+   if (s[0] == '-' || s.back() == '-') {
+      cout << "invalid\n";
+      return;
+   }
+   if (sz(hyp) == 3 && s[sz(s) - 2] != '-') {
+      cout << "invalid\n";
+      return;
+   } 
+   s = "978-" + s;
+   s.pop_back();
+   sumcheck = 0, inc = 1;
+   for (int i = 0; i < sz(s); ++i) {
+      if (s[i] >= '0' && s[i] <= '9') {
+         sumcheck += (s[i] - '0') * (inc % 2 == 0 ? 3 : 1);
+         ++inc;
+      }
+   }
+   int r = (10 - sumcheck % 10) % 10;
+   s += r + '0';
+   cout << s << '\n';
 }
 
 
 int32_t main() {
-
-#ifdef LOCAL
-   freopen("input.txt", "r", stdin);
-   freopen("output.txt", "w", stdout);
-#endif
    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
-   // int t;
-   // cin >> t;
-   // while (t--)
+   int t;
+   cin >> t;
+   while (t--)
    solve();
    return 0;
 }

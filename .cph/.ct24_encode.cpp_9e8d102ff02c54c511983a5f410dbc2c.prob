@@ -1,0 +1,1 @@
+{"name":"Local: ct24_encode","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\ct24_encode.cpp","tests":[{"id":1718456718606,"input":"1450\n","output":""},{"id":1718456809895,"input":"18","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\ct24_encode.cpp","group":"local","local":true}

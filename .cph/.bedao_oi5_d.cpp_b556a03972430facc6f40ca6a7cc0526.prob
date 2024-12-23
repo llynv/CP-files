@@ -1,0 +1,1 @@
+{"name":"Local: bedao_oi5_d","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\bedao_oi5_d.cpp","tests":[{"id":1730380128313,"input":"5\nabacc\n","output":""},{"id":1730380135792,"input":"6\nbaaabc","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\bedao_oi5_d.cpp","group":"local","local":true}

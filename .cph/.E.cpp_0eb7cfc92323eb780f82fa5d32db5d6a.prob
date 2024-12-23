@@ -1,0 +1,1 @@
+{"name":"Local: E","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\E.cpp","tests":[{"id":1717853092695,"input":"2\n5\n10 7 1 2 4\n5\n10 1 1 2 4\n","output":""},{"id":1717855077823,"input":"1\n6\n18 1 2 4 1 9","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\E.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: LG_Quali_A","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\LG_Quali_A.cpp","tests":[{"id":1728696878107,"input":"4 2\n1\n2\n3\n4","output":""},{"id":1728696883072,"input":"3 1\n1\n2\n3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\LG_Quali_A.cpp","group":"local","local":true}

@@ -1,26 +1,32 @@
-import math
-import sys
+def solve(m):
+    k=0
+    move=[]
+    marble=1
+    l = len(m)
+    while marble < l:
+        z = m.index(marble)
+        if (z+1 != marble):
+            k+=1
+            move.append(f"{z+1} {len(m)+1}")
+            for i in range(z, marble-1, -1):
+                k+=1
+                move.append(f"{i} {i+1}")
+            k+=1
+            move.append(f"{len(m)+1} {marble}")
+        m.insert(marble-1, m.pop(z))
+        marble+=1
 
-try:
-    sys.set_int_max_str_digits(1000000)
-except:
-    pass
 
+    print(len(move))
+    for i in move:
+        print(i)
     
-t = int(input())
+    return 0
 
-for _ in range(t):
-    n = int(input())
-    a = [int(x) for x in input().split()]
 
-    res = 0
-    for i in range(1, n):
-        if a[i] < a[i-1]:
-            try:
-                lg = math.ceil(math.log2(math.ceil(a[i-1] / a[i])))
-            except:
-                lg = 1
-            res += lg
-            a[i] *= 2 ** lg
-    
-    print(res)  
+if __name__ == "__main__":
+    t=int(input())
+    for _ in range(t):
+        n=int(input())
+        m=list(map(int,input().split()))
+        solve(m)

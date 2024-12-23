@@ -3,7 +3,9 @@ using namespace std;
 // Tên chương trình
 const string NAME = "template";
 // Số test kiểm tra
-const int NTEST = 1000;
+const int NTEST = 10000;
+// Thời gian giới hạn (milliseconds)
+const int TIME_LIMIT = 1000;
 
 mt19937 rd(chrono::steady_clock::now().time_since_epoch().count());
 #define rand rd
@@ -23,42 +25,30 @@ int main()
       // ofstream inp((fileName).c_str());
       ofstream inp((NAME + ".inp").c_str());
 
-      int t = rand() % 100 + 1;
-
-      inp << t << '\n';
-
-      for (int k = 0; k < t; ++k) {
-         // Code phần sinh test ở đây
-         int n = rand() % 1000 + 5;
-         inp << n << '\n';
-         
-         int a = rand() % (n - 3) + 1;
-         a = n - a;
-         int pre = 100000;
-         for (int i = 0; i < a; ++i) {
-            int x = pre - (rand() % 100 + 1);
-            inp << x << ' ';
-            pre = x;
-         }
-         for (int i = a; i < n; ++i) {
-            int x = pre + (rand() % 100 + 1);
-            inp << x << ' ';
-            pre = x;
-         }
+      long long n = 2000;
+      inp << n << '\n';
+      for (long long i = 0; i < n; ++i) inp << rd() % (long long) (1e18) + 1 << ' ';
+      long long q = rd() % 200000 + 1;
+      inp << '\n' << q << '\n';
+      for (long long i = 0; i < q; ++i) {
+         long long l = rd() % n + 1, r = rd() % n + 1, k = rd() % (long long) (1e18) + 1;
+         if (l > r) swap(l, r);
+         inp << l << ' ' << r << ' ' << k << '\n';
       }
 
-      // Code phần sinh test ở đây
-      inp.close();
+      auto start = chrono::steady_clock::now();
       // Nếu dùng Linux thì "./" + Tên chương trình
       system((NAME + ".exe").c_str());
       system((NAME + "_trau.exe").c_str());
+
+      // system((NAME + "_trau.exe").c_str());
       // Nếu dùng linux thì thay fc bằng diff
-      if (system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0)
+      cout << "Test " << iTest << '\n';
+      if (system(("fc " + NAME + ".ans " + NAME + ".out").c_str()) != 0)
       {
          cout << "Test " << iTest << ": WRONG!\n";
          return 0;
       }
-      cout << "Test " << iTest << ": CORRECT!\n";
    }
    return 0;
 }

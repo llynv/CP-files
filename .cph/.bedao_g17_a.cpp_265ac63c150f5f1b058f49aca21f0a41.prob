@@ -1,0 +1,1 @@
+{"name":"Local: bedao_g17_a","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\bedao_g17_a.cpp","tests":[{"id":1726405338415,"input":"6 3\n-2 -2 1\n1 1 2\n-1 2 3\n2 0 4\n0 3 5\n1 -3 6\n3\n2\n1\n","output":"15\n6\n0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\bedao_g17_a.cpp","group":"local","local":true}

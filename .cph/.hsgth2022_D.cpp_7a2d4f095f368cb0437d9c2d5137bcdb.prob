@@ -1,0 +1,1 @@
+{"name":"Local: hsgth2022_D","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\hsgth2022_D.cpp","tests":[{"id":1724313921977,"input":"5 1\n1 -2 3 -1 4","output":""},{"id":1724313928208,"input":"5 2\n1 -2 3 -1 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\hsgth2022_D.cpp","group":"local","local":true}

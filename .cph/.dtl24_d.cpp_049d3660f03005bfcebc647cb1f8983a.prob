@@ -1,0 +1,1 @@
+{"name":"Local: dtl24_d","url":"c:\\Users\\asus\\Documents\\Workspace\\CP\\dtl24_d.cpp","tests":[{"id":1730535970210,"input":"4\naaaa\nabcd\naabbc\nabbbc\n","output":""},{"id":1730535975375,"input":"1\naabb","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\asus\\Documents\\Workspace\\CP\\dtl24_d.cpp","group":"local","local":true}

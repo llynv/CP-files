@@ -55,15 +55,14 @@ int32_t main() {
 
 const int INF = 0x3f3f3f3f3f;
 
-int t = 2;
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
 void solve()
 {
-    int i = 0;
+    int n = rng() % 6 + 1;
     for (int i = 1; i <= 6; ++i) {
-        int n = ((rand() % 10) + 1) % 6 + 1;
         // dbg(n);
-        if (n == 5) cout << "Hello, Champion!\n";
+        if (n == i) cout << "Hello, Champion!\n";
         else cout << "Hi, Loser!\n";
     }
 }
